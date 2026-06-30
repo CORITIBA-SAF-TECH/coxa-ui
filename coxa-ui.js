@@ -73,8 +73,8 @@ function coxaConfirm(form, title, text, icon, confirmText, color) {
   if (typeof Swal === 'undefined') { return confirm(title); }
   Swal.fire(swalOpts({
     title: title, text: text, icon: icon, showCancelButton: true,
-    confirmButtonText: confirmText || '<i class="ti ti-check" style="font-size:.95rem;vertical-align:-2px;margin-right:4px"></i>Confirmar',
-    cancelButtonText: '<i class="ti ti-x" style="font-size:.95rem;vertical-align:-2px;margin-right:4px"></i>Cancelar',
+    confirmButtonText: confirmText || 'Confirmar',
+    cancelButtonText: 'Cancelar',
     confirmButtonColor: color,
     reverseButtons: true
   })).then(function(r) {
@@ -290,12 +290,17 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(updateClock, 1000);
   setInterval(updateElapsed, 15000);
 
-  /* Flash messages via SweetAlert2 */
+  /* Flash messages via SweetAlert2 — aguarda Swal carregar (injeção assíncrona) */
   const flashes = document.getElementById('flash-data');
   if (flashes) {
     try {
       const msgs = JSON.parse(flashes.textContent);
-      msgs.forEach(function(m) { coxaToast(m.cat === 'error' ? 'error' : 'success', m.msg); });
+      if (msgs.length) {
+        (function showFlashes() {
+          if (typeof Swal === 'undefined') { setTimeout(showFlashes, 80); return; }
+          msgs.forEach(function(m) { coxaToast(m.cat === 'error' ? 'error' : 'success', m.msg); });
+        })();
+      }
     } catch(e) {}
   }
 });

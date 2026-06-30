@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
@@ -59,35 +59,8 @@ body { height: auto; overflow: auto; display: block; }
   justify-content: space-between; gap: 14px;
   box-shadow: 0 2px 8px rgba(0,0,0,.3);
 }
-.docs-topbar h1 { font-size: 1rem; font-weight: 700; color: #fff; white-space: nowrap; }
+.docs-topbar h1 { font-size: 1rem; font-weight: 700; color: #fff; }
 .docs-topbar-right { display: flex; align-items: center; gap: 8px; }
-.docs-search-wrap {
-  flex: 1; max-width: 360px;
-  position: relative; display: flex; align-items: center;
-}
-.docs-search-wrap i {
-  position: absolute; left: 10px; color: rgba(255,255,255,.5);
-  font-size: 1rem; pointer-events: none;
-}
-#docs-search {
-  width: 100%; background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.2); border-radius: 8px;
-  color: #fff; font-size: .84rem; padding: 6px 12px 6px 32px;
-  outline: none; transition: all .2s; font-family: var(--font-sans);
-}
-#docs-search::placeholder { color: rgba(255,255,255,.45); }
-#docs-search:focus { background: rgba(255,255,255,.18); border-color: var(--accent); }
-.docs-search-clear {
-  position: absolute; right: 8px; background: none; border: none;
-  color: rgba(255,255,255,.45); cursor: pointer; font-size: .9rem;
-  display: none; padding: 2px; line-height: 1;
-}
-.docs-search-clear:hover { color: #fff; }
-.docs-no-results {
-  text-align: center; padding: 60px 20px; display: none;
-}
-.docs-no-results i { font-size: 2.5rem; color: var(--text3); display: block; margin-bottom: 12px; }
-.docs-no-results p { color: var(--text2); font-size: .95rem; }
 .docs-content { padding: 36px 28px 80px; max-width: 960px; margin: 0 auto; }
 .section-anchor { scroll-margin-top: 70px; }
 .docs-section { margin-bottom: 60px; }
@@ -127,7 +100,7 @@ body { height: auto; overflow: auto; display: block; }
 .docs-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
 .docs-table td code { background: var(--surface2); padding: 2px 6px; border-radius: 4px; font-size: .82em; font-family: var(--font-mono); color: var(--primary); }
 .cls { display: inline-block; background: var(--primary-lt); color: var(--primary); padding: 1px 7px; border-radius: 4px; font-size: .78rem; font-family: var(--font-mono); font-weight: 600; white-space: nowrap; }
-.color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.color-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
 .color-swatch { border-radius: 10px; overflow: hidden; box-shadow: var(--sh-sm); }
 .color-swatch-sample { height: 60px; }
 .color-swatch-info { padding: 8px 10px; background: var(--surface); }
@@ -139,45 +112,30 @@ body { height: auto; overflow: auto; display: block; }
   .docs-toc { display: none; }
   .docs-content { padding: 20px 16px 60px; }
 }
-
 /* ── Code toggle ── */
-.code-example-bar {
-  margin-top: 14px; padding-top: 10px;
-  border-top: 1px solid var(--border);
-  display: flex; justify-content: flex-end;
-}
-.code-toggle-btn {
-  background: none; border: 1px solid var(--border);
-  color: var(--text3); font-size: .75rem; font-weight: 600;
-  padding: 4px 10px; border-radius: var(--radius-xs);
-  cursor: pointer; display: flex; align-items: center; gap: 5px;
-  transition: all .15s; font-family: var(--font-sans);
-}
-.code-toggle-btn:hover, .code-toggle-btn.active {
-  background: var(--primary-lt); border-color: var(--primary); color: var(--primary);
-}
-.code-block-wrap {
-  position: relative; background: #1e1e1e;
-  border: 1px solid #333; border-top: none;
+.code-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  border: 1px solid var(--border); border-top: none;
+  padding: 5px 14px; background: var(--surface2);
   border-radius: 0 0 var(--radius) var(--radius);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
-.code-block-wrap pre {
-  background: transparent; border: none; border-radius: 0;
-  padding: 14px 18px; padding-right: 100px;
-  overflow-x: auto; font-size: .77rem; line-height: 1.65;
-  white-space: pre; color: #d4d4d4;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  margin: 0;
+.docs-example + .code-bar { /* connects visually */ }
+.docs-example:has(+ .code-bar) { border-radius: var(--radius) var(--radius) 0 0; margin-bottom: 0; }
+.code-toggle-btn, .code-copy-btn {
+  font-size: .72rem; font-weight: 600; color: var(--text3);
+  background: none; border: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 8px; border-radius: 5px;
+  transition: background .12s, color .12s; font-family: var(--font-sans);
 }
-.code-copy-btn {
-  position: absolute; top: 8px; right: 10px;
-  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
-  color: rgba(255,255,255,.6); font-size: .7rem; font-weight: 600;
-  padding: 3px 10px; border-radius: 4px; cursor: pointer;
-  font-family: var(--font-sans); z-index: 1;
+.code-toggle-btn:hover, .code-copy-btn:hover { background: var(--border); color: var(--text); }
+.code-block-wrap { display: none; margin-bottom: 10px; }
+.code-block-wrap.open { display: block; }
+.code-block-wrap .code-block {
+  border-radius: 0 0 var(--radius) var(--radius);
+  margin-bottom: 0;
 }
-.code-copy-btn:hover { background: rgba(255,255,255,.2); color: #fff; }
 </style>
 </head>
 <body>
@@ -240,22 +198,13 @@ body { height: auto; overflow: auto; display: block; }
 <!-- ── Main ────────────────────────────────────────────────────── -->
 <div class="docs-main">
   <div class="docs-topbar">
-    <h1><i class="ti ti-palette"></i> CoxaUI</h1>
-    <div class="docs-search-wrap">
-      <i class="ti ti-search"></i>
-      <input type="text" id="docs-search" placeholder="Buscar componente...">
-      <button class="docs-search-clear" id="docs-search-clear" title="Limpar"><i class="ti ti-x"></i></button>
-    </div>
+    <h1><i class="ti ti-palette"></i> CoxaUI — Design System</h1>
     <div class="docs-topbar-right">
       <button class="icon-btn" onclick="toggleDark()" title="Alternar tema"><i id="darkIcon" class="ti ti-moon"></i></button>
     </div>
   </div>
 
   <div class="docs-content">
-    <div class="docs-no-results" id="docs-no-results">
-      <i class="ti ti-search-off"></i>
-      <p>Nenhum componente encontrado para "<span id="docs-no-results-term"></span>".</p>
-    </div>
 
     <!-- ════════════════════════════════════════════════════════ -->
     <!-- FUNDAMENTOS                                             -->
@@ -269,37 +218,43 @@ body { height: auto; overflow: auto; display: block; }
 
       <div class="docs-subsection">
         <div class="docs-subsection-title">Cores da Marca</div>
-        <div class="color-grid">
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#006B3C"></div><div class="color-swatch-info"><div class="color-swatch-name">Primary</div><div class="color-swatch-hex">--primary · #006B3C</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#005530"></div><div class="color-swatch-info"><div class="color-swatch-name">Primary Dark</div><div class="color-swatch-hex">--primary-dk · #005530</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#e8f5ee;border:1px solid #d0d5dd"></div><div class="color-swatch-info"><div class="color-swatch-name">Primary Light</div><div class="color-swatch-hex">--primary-lt · #e8f5ee</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#fad716"></div><div class="color-swatch-info"><div class="color-swatch-name">Accent (Amarelo)</div><div class="color-swatch-hex">--accent · #fad716</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#00544d"></div><div class="color-swatch-info"><div class="color-swatch-name">Header / Sidebar</div><div class="color-swatch-hex">--hdr-bg · #00544d</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#003e38"></div><div class="color-swatch-info"><div class="color-swatch-name">Sidebar Dark</div><div class="color-swatch-hex">--sb-dark · #003e38</div></div></div>
+        <div class="docs-example" style="padding:14px">
+          <div class="color-grid">
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#006B3C"></div><div class="color-swatch-info"><div class="color-swatch-name">Primary</div><div class="color-swatch-hex">--primary · #006B3C</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#005530"></div><div class="color-swatch-info"><div class="color-swatch-name">Primary Dark</div><div class="color-swatch-hex">--primary-dk · #005530</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#e8f5ee;border:1px solid #d0d5dd"></div><div class="color-swatch-info"><div class="color-swatch-name">Primary Light</div><div class="color-swatch-hex">--primary-lt · #e8f5ee</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#fad716"></div><div class="color-swatch-info"><div class="color-swatch-name">Accent (Amarelo)</div><div class="color-swatch-hex">--accent · #fad716</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#00544d"></div><div class="color-swatch-info"><div class="color-swatch-name">Header / Sidebar</div><div class="color-swatch-hex">--hdr-bg · #00544d</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#003e38"></div><div class="color-swatch-info"><div class="color-swatch-name">Sidebar Dark</div><div class="color-swatch-hex">--sb-dark · #003e38</div></div></div>
+          </div>
         </div>
       </div>
 
       <div class="docs-subsection">
         <div class="docs-subsection-title">Cores de Status</div>
-        <div class="color-grid">
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#dcfce7"></div><div class="color-swatch-info"><div class="color-swatch-name">Success</div><div class="color-swatch-hex">--green-bg · #dcfce7</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#dbeafe"></div><div class="color-swatch-info"><div class="color-swatch-name">Info</div><div class="color-swatch-hex">--blue-bg · #dbeafe</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#fff7ed"></div><div class="color-swatch-info"><div class="color-swatch-name">Warning</div><div class="color-swatch-hex">--orange-bg · #fff7ed</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#fef3c7;border:1px solid #fde68a"></div><div class="color-swatch-info"><div class="color-swatch-name">Danger</div><div class="color-swatch-hex">--red-bg · #fef3c7</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#f5f3ff"></div><div class="color-swatch-info"><div class="color-swatch-name">Purple</div><div class="color-swatch-hex">--purple-bg · #f5f3ff</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#fefce8"></div><div class="color-swatch-info"><div class="color-swatch-name">Yellow</div><div class="color-swatch-hex">--yellow-bg · #fefce8</div></div></div>
+        <div class="docs-example" style="padding:14px">
+          <div class="color-grid">
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#dcfce7"></div><div class="color-swatch-info"><div class="color-swatch-name">Success</div><div class="color-swatch-hex">--green-bg · #dcfce7</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#dbeafe"></div><div class="color-swatch-info"><div class="color-swatch-name">Info</div><div class="color-swatch-hex">--blue-bg · #dbeafe</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#fff7ed"></div><div class="color-swatch-info"><div class="color-swatch-name">Warning</div><div class="color-swatch-hex">--orange-bg · #fff7ed</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#fee2e2"></div><div class="color-swatch-info"><div class="color-swatch-name">Danger</div><div class="color-swatch-hex">--red-bg · #fee2e2</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#f5f3ff"></div><div class="color-swatch-info"><div class="color-swatch-name">Purple</div><div class="color-swatch-hex">--purple-bg · #f5f3ff</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#fefce8"></div><div class="color-swatch-info"><div class="color-swatch-name">Yellow</div><div class="color-swatch-hex">--yellow-bg · #fefce8</div></div></div>
+          </div>
         </div>
       </div>
 
       <div class="docs-subsection">
         <div class="docs-subsection-title">Superfícies &amp; Texto</div>
-        <div class="color-grid">
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#f4f5f7;border:1px solid #e5e7eb"></div><div class="color-swatch-info"><div class="color-swatch-name">Background</div><div class="color-swatch-hex">--bg · #f4f5f7</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#fff;border:1px solid #e5e7eb"></div><div class="color-swatch-info"><div class="color-swatch-name">Surface</div><div class="color-swatch-hex">--surface · #fff</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#f7f8fa;border:1px solid #e5e7eb"></div><div class="color-swatch-info"><div class="color-swatch-name">Surface 2</div><div class="color-swatch-hex">--surface2 · #f7f8fa</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#1a1a1a"></div><div class="color-swatch-info"><div class="color-swatch-name">Text</div><div class="color-swatch-hex">--text · #1a1a1a</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#4b5563"></div><div class="color-swatch-info"><div class="color-swatch-name">Text 2</div><div class="color-swatch-hex">--text2 · #4b5563</div></div></div>
-          <div class="color-swatch"><div class="color-swatch-sample" style="background:#9ca3af"></div><div class="color-swatch-info"><div class="color-swatch-name">Text 3 (muted)</div><div class="color-swatch-hex">--text3 · #9ca3af</div></div></div>
+        <div class="docs-example" style="padding:14px">
+          <div class="color-grid">
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#f4f5f7;border:1px solid #e5e7eb"></div><div class="color-swatch-info"><div class="color-swatch-name">Background</div><div class="color-swatch-hex">--bg · #f4f5f7</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#fff;border:1px solid #e5e7eb"></div><div class="color-swatch-info"><div class="color-swatch-name">Surface</div><div class="color-swatch-hex">--surface · #fff</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#f7f8fa;border:1px solid #e5e7eb"></div><div class="color-swatch-info"><div class="color-swatch-name">Surface 2</div><div class="color-swatch-hex">--surface2 · #f7f8fa</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#1a1a1a"></div><div class="color-swatch-info"><div class="color-swatch-name">Text</div><div class="color-swatch-hex">--text · #1a1a1a</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#4b5563"></div><div class="color-swatch-info"><div class="color-swatch-name">Text 2</div><div class="color-swatch-hex">--text2 · #4b5563</div></div></div>
+            <div class="color-swatch"><div class="color-swatch-sample" style="background:#9ca3af"></div><div class="color-swatch-info"><div class="color-swatch-name">Text 3 (muted)</div><div class="color-swatch-hex">--text3 · #9ca3af</div></div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -998,7 +953,7 @@ body { height: auto; overflow: auto; display: block; }
       <div class="docs-section-title"><i class="ti ti-layout-bottombar"></i> Modal</div>
       <div class="docs-example">
         <button class="btn btn-p" onclick="openModal('demo-modal')"><i class="ti ti-eye"></i> Abrir Modal</button>
-        <button class="btn btn-d btn-sm" onclick="coxaConfirm({submit:function(){}}, 'Confirmar exclusão', 'Esta ação não pode ser desfeita.', 'warning', 'Excluir', '#ea580c')"><i class="ti ti-trash"></i> Confirm Dialog</button>
+        <button class="btn btn-d btn-sm" onclick="coxaConfirm({submit:function(){}}, 'Confirmar exclusão', 'Esta ação não pode ser desfeita.', 'warning', 'Excluir', '#e53e3e')"><i class="ti ti-trash"></i> Confirm Dialog</button>
         <button class="btn btn-acc btn-sm" onclick="coxaToast('success', 'Operação realizada com sucesso!')"><i class="ti ti-bell"></i> Toast</button>
       </div>
       <!-- Modal -->
@@ -1445,6 +1400,181 @@ function clearSelDemo() {
   updateDemoBar();
 }
 
+/* ── Code toggle ── */
+function toggleCode(btn) {
+  var wrap = btn.closest('.code-bar').nextElementSibling;
+  var open = wrap.classList.toggle('open');
+  btn.innerHTML = open
+    ? '<i class="ti ti-code"></i> Ocultar código'
+    : '<i class="ti ti-code"></i> Ver código';
+}
+function copyCode(btn) {
+  var wrap = btn.closest('.code-bar').nextElementSibling;
+  var text = wrap.querySelector('pre').textContent.trim();
+  navigator.clipboard.writeText(text).then(function() {
+    var orig = btn.innerHTML;
+    btn.innerHTML = '<i class="ti ti-check"></i> Copiado!';
+    setTimeout(function() { btn.innerHTML = orig; }, 1800);
+  });
+}
+
+/* ── Auto-inject code bars ── */
+(function() {
+  var snippets = {
+    'cores-marca': '/* Variáveis de cor da marca */\nbackground: var(--primary);   /* #006B3C — Verde Coritiba */\nbackground: var(--accent);    /* #fad716 — Amarelo Coritiba */\nbackground: var(--hdr-bg);   /* #00544d — Header/Sidebar */\nbackground: var(--primary-dk);/* #005530 — Verde escuro */\nbackground: var(--primary-lt);/* #e8f5ee — Verde claro */\ncolor: var(--text);           /* #1a1a1a */',
+    'cores-status': '/* Variáveis de cores de status */\nbackground: var(--green-bg);  /* #dcfce7 */\nbackground: var(--blue-bg);   /* #dbeafe */\nbackground: var(--orange-bg); /* #fff7ed */\nbackground: var(--red-bg);    /* #fee2e2 */\nbackground: var(--purple-bg); /* #f5f3ff */\nbackground: var(--yellow-bg); /* #fefce8 */',
+    'cores-superficies': '/* Variáveis de superfície e texto */\nbackground: var(--bg);       /* #f4f5f7 */\nbackground: var(--surface);  /* #fff */\nbackground: var(--surface2); /* #f7f8fa */\ncolor: var(--text);          /* #1a1a1a */\ncolor: var(--text2);         /* #4b5563 */\ncolor: var(--text3);         /* #9ca3af */',
+    'tipografia': '<h1>Título H1 — 1.8rem / 800</h1>\n<h2>Título H2 — 1.42rem / 700</h2>\n<h3>Título H3 — 1.22rem / 700</h3>\n<p>Texto padrão — 15px / 400. <strong>Negrito.</strong> <em>Itálico.</em> <a href="#">Link.</a></p>\n<p style="font-size:.88rem;color:var(--text2)">Texto secundário — .88rem</p>\n<p style="font-size:.78rem;color:var(--text3)">Texto muted — .78rem</p>\n<code>código inline</code>',
+    'tipografia-divider': '<div class="divider-lbl">Seção</div>\n<div class="divider-lbl"><i class="ti ti-settings"></i> Configurações</div>',
+    'tipografia-home': '<div class="home-sec-ttl"><i class="ti ti-star"></i> Manuais em Destaque</div>',
+    'icones': '<!-- Tabler Icons v3 — incluído pelo CoxaUI -->\n<i class="ti ti-home"></i>\n<i class="ti ti-users"></i>\n<i class="ti ti-settings"></i>\n<i class="ti ti-edit"></i>\n<i class="ti ti-trash"></i>\n<!-- Catálogo completo: https://tabler.io/icons -->',
+    'header': '<header>\n  <button class="menu-btn" onclick="toggleSidebar()">\n    <i class="ti ti-menu-2"></i>\n  </button>\n  <img src="/logo.png" alt="Logo" class="hdr-logo">\n  <div class="hdr-page">\n    <i class="ti ti-layout-dashboard"></i>\n    <div class="hdr-page-txt">\n      <span class="hdr-page-title">Dashboard</span>\n      <span class="hdr-page-desc">Visão geral</span>\n    </div>\n  </div>\n  <div class="hdr-right">\n    <span class="hdr-clock" id="live-clock">00:00:00</span>\n    <button class="icon-btn" onclick="toggleDark()">\n      <i class="ti ti-moon" id="darkIcon"></i>\n    </button>\n    <a href="/entrada" class="btn-new"><i class="ti ti-login"></i> Entrada</a>\n  </div>\n</header>',
+    'sidebar-simples': '<nav class="sidebar" id="sidebar" style="background:#00544d">\n  <div class="sb-brand">\n    <a href="#" class="sb-brand-lnk">\n      <img src="/logo.png" alt="Logo">\n      <div class="sb-brand-txt">\n        <span class="sb-brand-docs">controle de acesso</span>\n        <span class="sb-brand-club">Coritiba Foot Ball Club</span>\n      </div>\n    </a>\n  </div>\n  <div class="sb-scroll">\n    <div class="sb-nav">\n      <a href="/" class="sb-lnk active">\n        <i class="ti ti-layout-dashboard"></i>\n        <span>Dashboard</span>\n        <span class="sb-badge">5</span>\n      </a>\n      <div class="sb-grp-lbl">Operações</div>\n      <a href="/entrada" class="sb-lnk">\n        <i class="ti ti-login"></i><span>Registrar Entrada</span>\n      </a>\n    </div>\n  </div>\n</nav>',
+    'sidebar-accordion': '<div class="sb-sec open">\n  <div class="sb-sec-hdr">\n    <a href="#" class="sb-sec-lnk">\n      <i class="ti ti-folder"></i> Financeiro\n      <span class="sb-sec-cnt">3</span>\n    </a>\n    <button class="sb-arr-btn"\n      onclick="this.closest(\'.sb-sec\').classList.toggle(\'open\')">\n      <i class="ti ti-chevron-right arr"></i>\n    </button>\n  </div>\n  <ul class="sb-list">\n    <li><a href="#" class="active">Fluxo de Caixa</a></li>\n    <li><a href="#">Contas a Pagar</a></li>\n  </ul>\n</div>',
+    'breadcrumb': '<nav class="bc">\n  <a href="/">Início</a>\n  <span class="bc-sep"><i class="ti ti-chevron-right"></i></span>\n  <a href="/financeiro">Financeiro</a>\n  <span class="bc-sep"><i class="ti ti-chevron-right"></i></span>\n  <span>Fluxo de Caixa</span>\n</nav>',
+    'botoes-cores': '<button class="btn btn-p"><i class="ti ti-check"></i> Primário</button>\n<button class="btn btn-acc"><i class="ti ti-star"></i> Accent</button>\n<button class="btn btn-s">Secundário</button>\n<button class="btn btn-d"><i class="ti ti-trash"></i> Danger</button>\n<button class="btn btn-w"><i class="ti ti-alert-triangle"></i> Warning</button>\n<button class="btn btn-ghost">Ghost</button>',
+    'botoes-tamanhos': '<button class="btn btn-p btn-lg">Grande</button>\n<button class="btn btn-p">Normal</button>\n<button class="btn btn-p btn-sm">Pequeno</button>',
+    'botoes-header': '<a href="#" class="btn-new"><i class="ti ti-login"></i> Entrada</a>\n<a href="#" class="btn-new-alt"><i class="ti ti-logout"></i> Saída</a>\n<button class="icon-btn"><i class="ti ti-moon"></i></button>',
+    'botoes-entrada-saida': '<a href="#" class="btn-entrada"><i class="ti ti-login"></i> Registrar Entrada</a>\n<a href="#" class="btn-saida"><i class="ti ti-logout"></i> Registrar Saída</a>',
+    'botoes-grupo': '<div class="btn-group">\n  <button class="btn btn-s btn-sm"><i class="ti ti-list"></i> Lista</button>\n  <button class="btn btn-p btn-sm"><i class="ti ti-grid-dots"></i> Grid</button>\n  <button class="btn btn-s btn-sm"><i class="ti ti-table"></i> Tabela</button>\n</div>',
+    'form-principal': '<div class="form-card">\n  <div class="form-row">\n    <div class="form-g">\n      <label>Nome <span class="req">*</span></label>\n      <input type="text" placeholder="João da Silva">\n    </div>\n    <div class="form-g">\n      <label>CPF</label>\n      <input type="text" placeholder="000.000.000-00">\n    </div>\n  </div>\n  <div class="form-g">\n    <label>Tipo</label>\n    <select>\n      <option>Selecione...</option>\n      <option>Fornecedor</option>\n    </select>\n  </div>\n  <div class="form-act">\n    <button class="btn btn-s">Cancelar</button>\n    <button class="btn btn-p"><i class="ti ti-check"></i> Salvar</button>\n  </div>\n</div>',
+    'form-toggle': '<label class="toggle-wrap">\n  <span class="toggle-sw">\n    <input type="checkbox" checked>\n    <span class="toggle-track"></span>\n    <span class="toggle-thumb"></span>\n  </span>\n  <span class="toggle-lbl">Receber notificações</span>\n</label>',
+    'form-pills': '<div class="tipo-opts">\n  <label class="tipo-opt">\n    <input type="radio" name="fmt" checked>\n    <i class="ti ti-file-text"></i> Texto HTML\n  </label>\n  <label class="tipo-opt">\n    <input type="radio" name="fmt">\n    <i class="ti ti-file-type-pdf"></i> PDF\n  </label>\n</div>',
+    'form-cards': '<div class="tpk-grid">\n  <label class="tpk-card">\n    <input type="radio" name="tipo" checked>\n    <span class="tpk-icon"><i class="ti ti-file-text"></i></span>\n    <span class="tpk-lbl">Manual</span>\n    <span class="tpk-desc">Documentação técnica</span>\n  </label>\n  <label class="tpk-card">\n    <input type="radio" name="tipo">\n    <span class="tpk-icon"><i class="ti ti-sitemap"></i></span>\n    <span class="tpk-lbl">Processo</span>\n    <span class="tpk-desc">Fluxo BPMN</span>\n  </label>\n</div>',
+    'form-localidade': '<div class="loc-grid">\n  <label class="loc-card">\n    <input type="radio" name="loc" checked>\n    <span class="loc-icon"><i class="ti ti-building"></i></span>\n    <span class="loc-name">Sede</span>\n    <span class="loc-sub">2 portarias</span>\n  </label>\n  <label class="loc-card">\n    <input type="radio" name="loc">\n    <span class="loc-icon"><i class="ti ti-run"></i></span>\n    <span class="loc-name">CT</span>\n    <span class="loc-sub">3 portarias</span>\n  </label>\n</div>',
+    'form-upload': '<div class="file-input">\n  <i class="ti ti-upload"></i>\n  Clique ou arraste um arquivo aqui\n  <span>PDF, PNG, BPMN até 50MB</span>\n</div>',
+    'form-range': '<label>Prioridade</label>\n<input type="range" min="1" max="10" value="7">',
+    'tabelas': '<div class="tbl-wrap">\n  <table>\n    <thead>\n      <tr>\n        <th><input type="checkbox"></th>\n        <th>Nome</th>\n        <th>Status</th>\n        <th>Ações</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td><input type="checkbox" class="sel-chk" data-reg="1" data-nome="João"></td>\n        <td>João da Silva</td>\n        <td><span class="badge-inside">Presente</span></td>\n        <td>\n          <div class="act-dd">\n            <button class="btn btn-sm btn-s act-dd-btn">\n              <i class="ti ti-dots-vertical"></i>\n            </button>\n            <div class="act-dd-menu">\n              <a href="#" class="act-dd-item"><i class="ti ti-eye"></i> Ver</a>\n              <button class="act-dd-item danger"><i class="ti ti-trash"></i> Excluir</button>\n            </div>\n          </div>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n<!-- JS -->\n<script>initTableSearch(\'input-id\', \'#minha-table tbody tr\');<\/script>',
+    'cards-conteudo': '<div class="cards">\n  <div class="card-item">\n    <div class="ci-sec"><a href="#">Financeiro</a></div>\n    <h2><a href="#">Manual de Fluxo de Caixa</a></h2>\n    <p class="ci-sub">Descrição do documento...</p>\n    <div class="ci-meta">\n      <span><strong>Atualizado:</strong> 28 jun 2025</span>\n    </div>\n    <div class="tags">\n      <a href="#" class="tag">financeiro</a>\n    </div>\n  </div>\n</div>',
+    'cards-sec': '<div class="sec-cards">\n  <a href="#" class="sec-card">\n    <div class="sc-name"><i class="ti ti-cash"></i> Financeiro</div>\n    <div class="sc-cnt">12 documentos</div>\n  </a>\n</div>',
+    'cards-tipo': '<div class="tipo-cards">\n  <a href="#" class="tipo-card">\n    <span class="tp-icon"><i class="ti ti-file-text"></i></span>\n    <div>\n      <div class="tp-label">Manuais</div>\n      <div class="tp-cnt">24 documentos</div>\n    </div>\n  </a>\n</div>',
+    'cards-adm': '<div class="adm-card">\n  <div class="adm-hdr">\n    <h2><i class="ti ti-users"></i> Visitantes</h2>\n    <div class="adm-hdr-actions">\n      <input type="text" placeholder="Filtrar...">\n      <button class="btn btn-p btn-sm"><i class="ti ti-plus"></i> Novo</button>\n    </div>\n  </div>\n</div>',
+    'cards-link': '<div class="link-cards">\n  <a href="#" class="link-card">\n    <span class="link-ico-ph"><i class="ti ti-brand-whatsapp"></i></span>\n    <span class="link-nome">WhatsApp</span>\n  </a>\n</div>',
+    'badges-status': '<span class="badge badge-green"><i class="ti ti-circle-filled"></i> Ativo</span>\n<span class="badge badge-blue">Informação</span>\n<span class="badge badge-orange"><i class="ti ti-clock"></i> Pendente</span>\n<span class="badge badge-red">Inativo</span>\n<span class="badge badge-purple">Revisão</span>\n<span class="badge badge-gray">Arquivado</span>\n<span class="badge badge-primary">12</span>\n<span class="badge badge-accent">Destaque</span>',
+    'badges-especiais': '<span class="badge-inside"><i class="ti ti-circle-filled"></i> Presente</span>\n<span class="badge-outside">Saiu</span>\n<span class="badge-loc">Sede</span>\n<span class="badge-count">5</span>\n<span class="pdf-badge"><i class="ti ti-file-type-pdf"></i> PDF</span>\n<span class="bpmn-badge"><i class="ti ti-sitemap"></i> BPMN</span>',
+    'badges-tags': '<div class="tag-cloud">\n  <a href="#" class="tag">financeiro</a>\n  <a href="#" class="tag">rh</a>\n  <a href="#" class="tag">ti</a>\n  <span class="tag tag-empty">sem tags</span>\n</div>',
+    'badges-notif': '<div class="notif-wrap">\n  <i class="ti ti-bell" style="font-size:1.4rem"></i>\n  <span class="notif-dot"></span>\n</div>',
+    'alertas': '<div class="alert alert-info">\n  <i class="ti ti-info-circle"></i>\n  <div class="alert-body">\n    <div class="alert-title">Informação</div>\n    Mensagem informativa.\n  </div>\n</div>\n<div class="alert alert-success">\n  <i class="ti ti-circle-check"></i>\n  <div class="alert-body">\n    <div class="alert-title">Sucesso</div>\n    Operação realizada.\n  </div>\n</div>\n<div class="alert alert-warn">\n  <i class="ti ti-alert-triangle"></i>\n  <div class="alert-body">\n    <div class="alert-title">Atenção</div>\n    Verifique os dados.\n  </div>\n</div>\n<div class="alert alert-danger">\n  <i class="ti ti-alert-octagon"></i>\n  <div class="alert-body">\n    <div class="alert-title">Erro</div>\n    Algo deu errado.\n  </div>\n</div>',
+    'alertas-banner': '<div class="pending-banner">\n  <i class="ti ti-clock"></i>\n  Existem <strong>3 posts</strong> aguardando aprovação.\n</div>',
+    'modal': '<div class="modal-overlay" id="meu-modal">\n  <div class="modal-box">\n    <div class="modal-title">\n      <i class="ti ti-logout"></i> Registrar Saída\n      <button class="modal-close" onclick="closeModal(\'meu-modal\')">\n        <i class="ti ti-x"></i>\n      </button>\n    </div>\n    <div class="modal-info">\n      <strong>João da Silva</strong>\n      <small>Fornecedor · Sede</small>\n    </div>\n    <div class="modal-actions">\n      <button class="btn btn-s" onclick="closeModal(\'meu-modal\')">Cancelar</button>\n      <button class="btn btn-saida"><i class="ti ti-logout"></i> Confirmar Saída</button>\n    </div>\n  </div>\n</div>\n<!-- Abrir -->\n<button onclick="openModal(\'meu-modal\')">Abrir Modal</button>\n<!-- Fechar no overlay -->\n<script>initModalOverlayClose(\'meu-modal\');<\/script>',
+    'tabs-links': '<div class="links-tabs-wrap">\n  <div class="links-tabs">\n    <button class="links-tab active"\n      onclick="switchLinksTab(this,\'tab-fin\')">\n      <i class="ti ti-cash"></i> Financeiro\n    </button>\n    <button class="links-tab"\n      onclick="switchLinksTab(this,\'tab-rh\')">\n      <i class="ti ti-users"></i> RH\n    </button>\n  </div>\n  <div class="links-panel" id="tab-fin">Conteúdo Financeiro</div>\n  <div class="links-panel hidden" id="tab-rh">Conteúdo RH</div>\n</div>',
+    'tabs-sublinhado': '<div class="tabs">\n  <div class="tab active" onclick="switchTab(this,\'t-todos\')">Todos</div>\n  <div class="tab" onclick="switchTab(this,\'t-ativos\')">Ativos</div>\n</div>\n<div id="t-todos" class="tab-panel">Todos os registros.</div>\n<div id="t-ativos" class="tab-panel hidden">Apenas ativos.</div>',
+    'accordion': '<div class="accordion">\n  <div class="accordion-item open">\n    <button class="accordion-btn">\n      Pergunta?\n      <span class="acc-arr"><i class="ti ti-chevron-down"></i></span>\n    </button>\n    <div class="accordion-body">Resposta aqui.</div>\n  </div>\n  <div class="accordion-item">\n    <button class="accordion-btn">\n      Outra pergunta?\n      <span class="acc-arr"><i class="ti ti-chevron-down"></i></span>\n    </button>\n    <div class="accordion-body">Outra resposta.</div>\n  </div>\n</div>',
+    'progress': '<div class="progress-label"><span>Documentação</span><span>75%</span></div>\n<div class="progress"><div class="progress-bar" style="width:75%"></div></div>\n\n<div class="progress-label"><span>Processos</span><span>42%</span></div>\n<div class="progress"><div class="progress-bar success" style="width:42%"></div></div>\n\n<div class="progress-label"><span>Pendências</span><span>88%</span></div>\n<div class="progress"><div class="progress-bar warning" style="width:88%"></div></div>\n\n<!-- Striped -->\n<div class="progress progress-lg">\n  <div class="progress-bar striped" style="width:60%"></div>\n</div>',
+    'dropdown': '<div class="act-dd">\n  <button class="btn btn-s act-dd-btn">\n    <i class="ti ti-dots-vertical"></i> Ações\n  </button>\n  <div class="act-dd-menu">\n    <a href="#" class="act-dd-item"><i class="ti ti-eye"></i> Visualizar</a>\n    <a href="#" class="act-dd-item"><i class="ti ti-edit"></i> Editar</a>\n    <div class="act-dd-sep"></div>\n    <button class="act-dd-item danger"><i class="ti ti-trash"></i> Excluir</button>\n  </div>\n</div>',
+    'tooltip': '<div class="tooltip-wrap">\n  <button class="btn btn-p btn-sm">Hover aqui</button>\n  <span class="tooltip-tip">Texto do tooltip</span>\n</div>',
+    'avatar': '<div class="avatar avatar-xl">AB</div>\n<div class="avatar avatar-lg">JD</div>\n<div class="avatar">MO</div>\n<div class="avatar avatar-sm">CP</div>\n\n<!-- Grupo -->\n<div class="avatar-grp">\n  <div class="avatar" title="João">JD</div>\n  <div class="avatar" title="Maria">MO</div>\n  <div class="avatar" style="background:var(--surface3);color:var(--text3)">+4</div>\n</div>',
+    'stat-cards': '<div class="stat-cards">\n  <div class="stat-card">\n    <div class="stat-icon green"><i class="ti ti-users"></i></div>\n    <div class="stat-body">\n      <div class="stat-val">42</div>\n      <div class="stat-lbl">Visitantes Presentes</div>\n    </div>\n  </div>\n  <div class="stat-card">\n    <div class="stat-icon blue"><i class="ti ti-login"></i></div>\n    <div class="stat-body">\n      <div class="stat-val">128</div>\n      <div class="stat-lbl">Entradas Hoje</div>\n    </div>\n  </div>\n</div>',
+    'filter-pills': '<div class="filter-pills">\n  <a href="#" class="filter-pill active">Todos</a>\n  <a href="#" class="filter-pill"><i class="ti ti-building"></i> Sede</a>\n  <a href="#" class="filter-pill"><i class="ti ti-run"></i> CT</a>\n  <a href="#" class="filter-pill"><i class="ti ti-trophy"></i> Estádio</a>\n</div>',
+    'timeline-hist': '<ul class="hist">\n  <li class="hist-item">\n    <span class="hist-badge">Entrada</span>\n    <div class="hist-body">\n      <div class="hist-title">João entrou pela Portaria 1</div>\n      <div class="hist-meta"><span>08h30</span><span>·</span><span>Sede</span></div>\n    </div>\n  </li>\n</ul>',
+    'timeline-vertical': '<ul class="timeline">\n  <li class="tl-item">\n    <div class="tl-dot"></div>\n    <div class="tl-date">28 Jun 2025 · 14h30</div>\n    <div class="tl-title">Manual publicado</div>\n    <div class="tl-body">Aprovado e disponibilizado.</div>\n  </li>\n  <li class="tl-item">\n    <div class="tl-dot warn"></div>\n    <div class="tl-date">25 Jun 2025</div>\n    <div class="tl-title">Em revisão</div>\n  </li>\n</ul>',
+    'steps': '<div class="steps">\n  <div class="step-item done">\n    <div class="step-num"><i class="ti ti-check" style="font-size:.7rem"></i></div>\n    <div class="step-lbl">Localidade</div>\n    <div class="step-line"></div>\n  </div>\n  <div class="step-item active">\n    <div class="step-num">2</div>\n    <div class="step-lbl">Portaria</div>\n    <div class="step-line"></div>\n  </div>\n  <div class="step-item">\n    <div class="step-num">3</div>\n    <div class="step-lbl">Visitante</div>\n  </div>\n</div>',
+    'kv': '<div class="kv-list">\n  <div class="kv-item">\n    <span class="kv-key">Nome</span>\n    <span class="kv-val">João da Silva</span>\n  </div>\n  <div class="kv-item">\n    <span class="kv-key">CPF</span>\n    <span class="kv-val">123.456.789-00</span>\n  </div>\n  <div class="kv-divider"></div>\n  <div class="kv-item">\n    <span class="kv-key">Status</span>\n    <span class="kv-val"><span class="badge-inside">Presente</span></span>\n  </div>\n</div>',
+    'empty': '<div class="empty">\n  <div class="empty-ico"><i class="ti ti-users"></i></div>\n  <p>Nenhum visitante encontrado.</p>\n  <button class="btn btn-p btn-sm">\n    <i class="ti ti-plus"></i> Registrar Entrada\n  </button>\n</div>',
+    'erro': '<div class="err-page">\n  <div class="err-ico"><i class="ti ti-error-404"></i></div>\n  <h1>Página não encontrada</h1>\n  <p>O recurso solicitado não existe.</p>\n  <div class="err-btns">\n    <a href="/" class="btn btn-p"><i class="ti ti-home"></i> Voltar ao Início</a>\n    <a href="#" class="btn btn-ghost">Suporte</a>\n  </div>\n</div>',
+    'spinner': '<div class="spinner-box">\n  <div class="spinner-ring"></div>\n  <p>Carregando...</p>\n</div>\n\n<!-- Inline -->\n<div class="spinner-inline"></div>',
+    'sel-bar': '<div class="sel-bar" id="sel-bar">\n  <span class="sel-bar-lbl">0 selecionados</span>\n  <button class="btn btn-sm btn-acc">\n    <i class="ti ti-logout"></i> Saída em Lote\n  </button>\n  <button class="btn btn-sm" onclick="clearSel()">\n    <i class="ti ti-x"></i> Limpar\n  </button>\n</div>'
+  };
+
+  function injectCodeBar(example, snippetKey) {
+    var snippet = snippets[snippetKey];
+    if (!snippet) return;
+    var bar = document.createElement('div');
+    bar.className = 'code-bar';
+    bar.innerHTML =
+      '<button class="code-toggle-btn" onclick="toggleCode(this)">' +
+        '<i class="ti ti-code"></i> Ver código</button>' +
+      '<button class="code-copy-btn" onclick="copyCode(this)">' +
+        '<i class="ti ti-copy"></i> Copiar</button>';
+
+    var wrap = document.createElement('div');
+    wrap.className = 'code-block-wrap';
+    var pre = document.createElement('pre');
+    pre.className = 'code-block';
+    pre.textContent = snippet;
+    wrap.appendChild(pre);
+
+    example.after(bar);
+    bar.after(wrap);
+  }
+
+  /* [sectionId, subsectionIndex (-1 = direct .docs-example), snippetKey] */
+  var entries = [
+    ['cores',        0,  'cores-marca'],
+    ['cores',        1,  'cores-status'],
+    ['cores',        2,  'cores-superficies'],
+    ['tipografia',  -1,  'tipografia'],
+    ['tipografia',   0,  'tipografia-divider'],
+    ['tipografia',   1,  'tipografia-home'],
+    ['icones',      -1,  'icones'],
+    ['header',      -1,  'header'],
+    ['sidebar',      0,  'sidebar-simples'],
+    ['sidebar',      1,  'sidebar-accordion'],
+    ['breadcrumb',  -1,  'breadcrumb'],
+    ['botoes',       0,  'botoes-cores'],
+    ['botoes',       1,  'botoes-tamanhos'],
+    ['botoes',       2,  'botoes-header'],
+    ['botoes',       3,  'botoes-entrada-saida'],
+    ['botoes',       4,  'botoes-grupo'],
+    ['formularios', -1,  'form-principal'],
+    ['formularios',  0,  'form-toggle'],
+    ['formularios',  1,  'form-pills'],
+    ['formularios',  2,  'form-cards'],
+    ['formularios',  3,  'form-localidade'],
+    ['formularios',  4,  'form-upload'],
+    ['formularios',  5,  'form-range'],
+    ['tabelas',     -1,  'tabelas'],
+    ['cards',        0,  'cards-conteudo'],
+    ['cards',        1,  'cards-sec'],
+    ['cards',        2,  'cards-tipo'],
+    ['cards',        3,  'cards-adm'],
+    ['cards',        4,  'cards-link'],
+    ['badges',       0,  'badges-status'],
+    ['badges',       1,  'badges-especiais'],
+    ['badges',       2,  'badges-tags'],
+    ['badges',       3,  'badges-notif'],
+    ['alertas',     -1,  'alertas'],
+    ['alertas',      0,  'alertas-banner'],
+    ['modal',       -1,  'modal'],
+    ['tabs',         0,  'tabs-links'],
+    ['tabs',         1,  'tabs-sublinhado'],
+    ['accordion',   -1,  'accordion'],
+    ['progress',    -1,  'progress'],
+    ['dropdown',    -1,  'dropdown'],
+    ['tooltip',     -1,  'tooltip'],
+    ['avatar',      -1,  'avatar'],
+    ['stat-cards',  -1,  'stat-cards'],
+    ['filter-pills',-1,  'filter-pills'],
+    ['timeline',     0,  'timeline-hist'],
+    ['timeline',     1,  'timeline-vertical'],
+    ['steps',       -1,  'steps'],
+    ['kv',          -1,  'kv'],
+    ['empty',       -1,  'empty'],
+    ['erro',        -1,  'erro'],
+    ['spinner',     -1,  'spinner'],
+    ['sel-bar',     -1,  'sel-bar']
+  ];
+
+  entries.forEach(function(entry) {
+    var sectionId = entry[0], subIdx = entry[1], key = entry[2];
+    var section = document.getElementById(sectionId);
+    if (!section) return;
+    var example;
+    if (subIdx === -1) {
+      /* Direct child example (not inside a subsection) */
+      var all = section.querySelectorAll(':scope > .docs-example');
+      example = all[0] || null;
+    } else {
+      /* nth subsection's example */
+      var subs = section.querySelectorAll(':scope > .docs-subsection');
+      if (subs[subIdx]) example = subs[subIdx].querySelector('.docs-example');
+    }
+    if (example && (!example.nextElementSibling || !example.nextElementSibling.classList.contains('code-bar'))) {
+      injectCodeBar(example, key);
+    }
+  });
+})();
+
 /* TOC active highlighting */
 window.addEventListener('scroll', function() {
   const sections = document.querySelectorAll('.docs-section[id]');
@@ -1459,140 +1589,6 @@ window.addEventListener('scroll', function() {
 
 /* Close modal on overlay click */
 initModalOverlayClose('demo-modal');
-
-/* ── "Ver código" toggle ── */
-function formatHtml(str) {
-  str = str.trim()
-    .replace(/\s{2,}/g, ' ')
-    .replace(/>(?=<)/g, '>\n');
-  var depth = 0;
-  var voids = /^<(input|img|br|hr|link|meta|area|base|col|embed|param|source|track|wbr)\b/i;
-  return str.split('\n').map(function(line) {
-    line = line.trim();
-    if (!line) return null;
-    if (/^<\//.test(line)) depth = Math.max(0, depth - 1);
-    var out = '  '.repeat(depth) + line;
-    if (/^<[^/?!][^>]*>$/.test(line) && !voids.test(line) && !/<\//.test(line)) depth++;
-    return out;
-  }).filter(function(l) { return l !== null; }).join('\n');
-}
-
-function initCodeToggles() {
-  document.querySelectorAll('.docs-example').forEach(function(ex) {
-    if (ex.dataset.codeInit) return;
-    ex.dataset.codeInit = '1';
-    var raw = ex.innerHTML.trim();
-
-    /* Footer bar with toggle button */
-    var bar = document.createElement('div');
-    bar.className = 'code-example-bar';
-    var btn = document.createElement('button');
-    btn.className = 'code-toggle-btn';
-    btn.innerHTML = '<i class="ti ti-code"></i> Ver código';
-    bar.appendChild(btn);
-    ex.appendChild(bar);
-
-    /* Code block sibling */
-    var wrap = document.createElement('div');
-    wrap.className = 'code-block-wrap';
-    wrap.style.display = 'none';
-
-    var cpBtn = document.createElement('button');
-    cpBtn.className = 'code-copy-btn';
-    cpBtn.innerHTML = '<i class="ti ti-copy"></i> Copiar';
-
-    var pre = document.createElement('pre');
-    var formatted = formatHtml(raw);
-    pre.textContent = formatted;
-
-    cpBtn.onclick = function() {
-      navigator.clipboard.writeText(formatted).then(function() {
-        cpBtn.innerHTML = '<i class="ti ti-check"></i> Copiado!';
-        setTimeout(function() { cpBtn.innerHTML = '<i class="ti ti-copy"></i> Copiar'; }, 1800);
-      });
-    };
-
-    wrap.appendChild(cpBtn);
-    wrap.appendChild(pre);
-    ex.parentNode.insertBefore(wrap, ex.nextSibling);
-
-    btn.addEventListener('click', function() {
-      var open = wrap.style.display !== 'none';
-      wrap.style.display = open ? 'none' : 'block';
-      btn.classList.toggle('active', !open);
-      btn.innerHTML = open
-        ? '<i class="ti ti-code"></i> Ver código'
-        : '<i class="ti ti-code-off"></i> Ocultar código';
-    });
-  });
-}
-
-initCodeToggles();
-
-/* ── Docs search ── */
-(function() {
-  var inp     = document.getElementById('docs-search');
-  var clrBtn  = document.getElementById('docs-search-clear');
-  var noRes   = document.getElementById('docs-no-results');
-  var noResTerm = document.getElementById('docs-no-results-term');
-  if (!inp) return;
-
-  function runSearch() {
-    var q = inp.value.trim().toLowerCase();
-    clrBtn.style.display = q ? 'block' : 'none';
-
-    var sections = document.querySelectorAll('.docs-section[id]');
-    var matched = 0;
-
-    sections.forEach(function(sec) {
-      /* search in section title + subsection titles */
-      var titleEl = sec.querySelector('.docs-section-title');
-      var title = titleEl ? titleEl.textContent.toLowerCase() : '';
-      var subTitles = Array.from(sec.querySelectorAll('.docs-subsection-title')).map(function(el) {
-        return el.textContent.toLowerCase();
-      }).join(' ');
-      var hit = !q || title.includes(q) || subTitles.includes(q) || sec.id.includes(q);
-
-      /* show/hide entire section */
-      sec.style.display = hit ? '' : 'none';
-      /* also hide the code-block-wrap sibling if section is hidden */
-      var sib = sec.nextElementSibling;
-      while (sib && sib.classList && !sib.classList.contains('docs-section')) {
-        sib.style.display = hit ? '' : 'none';
-        sib = sib.nextElementSibling;
-      }
-      if (hit) matched++;
-
-      /* sync TOC link */
-      var tocLink = document.querySelector('.docs-toc-nav a[href="#' + sec.id + '"]');
-      if (tocLink) tocLink.style.display = hit ? '' : 'none';
-    });
-
-    /* hide TOC group labels whose all links are hidden */
-    document.querySelectorAll('.docs-toc-section').forEach(function(lbl) {
-      var next = lbl.nextElementSibling;
-      var hasVisible = false;
-      while (next && !next.classList.contains('docs-toc-section')) {
-        if (next.tagName === 'A' && next.style.display !== 'none') hasVisible = true;
-        next = next.nextElementSibling;
-      }
-      lbl.style.display = hasVisible ? '' : 'none';
-    });
-
-    /* no-results message */
-    if (noRes) {
-      noRes.style.display = q && matched === 0 ? 'block' : 'none';
-      if (noResTerm) noResTerm.textContent = inp.value.trim();
-    }
-  }
-
-  inp.addEventListener('input', runSearch);
-  clrBtn.addEventListener('click', function() {
-    inp.value = '';
-    inp.focus();
-    runSearch();
-  });
-})();
 </script>
 </body>
 </html>

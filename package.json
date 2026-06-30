@@ -1,0 +1,22 @@
+{
+  "name": "coxa-ui",
+  "version": "0.0.2",
+  "description": "Kit de componentes de interface para padronização dos projetos web do Coritiba SAF",
+  "main": "coxa-ui.js",
+  "style": "coxa-ui.css",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CORITIBA-SAF-TECH/coxa-ui.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/CORITIBA-SAF-TECH/coxa-ui/issues"
+  },
+  "homepage": "https://github.com/CORITIBA-SAF-TECH/coxa-ui#readme"
+}
