@@ -4,13 +4,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>CoxaUI — Design System | Coritiba Foot Ball Club</title>
+  <title>CoxaUI Design System | Coritiba FC</title>
   <meta name="description" content="Biblioteca interna de componentes HTML/CSS/JS do Coritiba Foot Ball Club">
   <script>if (localStorage.getItem('coxaui-dark') === '1') document.documentElement.classList.add('dark');</script>
   <link rel="icon" href="logo.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="coxa-ui.css">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CoxaUI Design System">
+  <meta property="og:url" content="https://coritiba-saf-tech.github.io/coxa-ui/">
+  <meta property="og:image" content="https://coritiba-saf-tech.github.io/coxa-ui/ogimage.png">
+  <meta property="og:description"
+    content="Kit de componentes de interface para padronização dos projetos web do Coritiba Foot Ball Club (SAF). Sem dependências de build — importe via CDN e comece a usar.">
   <style>
     /* ── Docs-specific layout ── */
     :root {
@@ -93,41 +99,52 @@
       padding: 8px 0 20px;
     }
 
-    .docs-toc-nav a,
-    .docs-toc-section {
-      display: block;
-      padding: 6px 16px;
-      font-size: .82rem;
-      color: rgba(255, 255, 255, .7);
+    .docs-toc-nav a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      margin: 2px 8px;
+      border-radius: 8px;
+      font-size: .84rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .82);
+      border: 1px solid rgba(255, 255, 255, .18);
       text-decoration: none;
-      transition: color .12s, background .12s;
-      border-radius: 0;
+      transition: all .12s;
     }
 
     .docs-toc-nav a:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, .08);
+      background: rgba(250, 215, 22, .12);
+      color: var(--accent);
+      border-color: rgba(250, 215, 22, .45);
       text-decoration: none;
     }
 
     .docs-toc-nav a.active {
-      color: var(--accent);
+      background: var(--accent);
+      color: #003e38;
       font-weight: 700;
+      border-color: var(--accent);
     }
 
+    .docs-toc-nav a.active i { color: #003e38; }
+
     .docs-toc-nav a i {
-      font-size: .85rem;
-      opacity: .8;
-      margin-right: 4px;
+      font-size: 1rem;
+      flex-shrink: 0;
+      color: rgba(255, 255, 255, .65);
     }
 
     .docs-toc-section {
-      font-size: .64rem;
+      display: block;
+      font-size: .62rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .8px;
       color: rgba(255, 255, 255, .35);
       margin-top: 14px;
+      padding: 0 16px 3px;
       pointer-events: none;
     }
 
@@ -513,11 +530,11 @@
     <nav class="docs-toc">
       <div class="docs-toc-brand">
 
-          <div class="logo-mark">CFC</div>
-          <div class="brand-info">
-            <div class="brand-name">CoxaUI</div>
-            <div class="brand-ver">Coritiba Foot Ball Club</div>
-          </div>
+        <div class="logo-mark">CFC</div>
+        <div class="brand-info">
+          <div class="brand-name">CoxaUI </div>
+          <div class="brand-ver">Coritiba Foot Ball Club</div>
+        </div>
 
       </div>
       <div class="docs-toc-nav">
@@ -556,18 +573,18 @@
         <span class="docs-toc-section">JavaScript</span>
         <a href="#js-api"><i class="ti ti-code"></i> API JavaScript</a>
       </div>
-      <div class="docs-toc-footer">&copy; 2025 Coritiba SAF</div>
     </nav>
 
     <!-- ── Main ────────────────────────────────────────────────────── -->
     <div class="docs-right">
       <div class="docs-topbar">
         <a href="index.html" style="text-decoration:none">
-                  <h1 style="display:flex;align-items:center;gap:10px"><img src="logo.png" alt="Coritiba"
-            style="height:30px;width:auto;display:block"><span
-            style="color:#fff;font-size:1rem;font-weight:800;letter-spacing:-.2px">CoxaUI</span></h1>
+          <h1 style="display:flex;align-items:center;gap:10px"><img src="logo.png" alt="Coritiba"
+              style="height:30px;width:auto;display:block"><span
+              style="color:#fff;font-size:1rem;font-weight:800;letter-spacing:-.2px">CoxaUI Design System</span></h1>
         </a>
         <div class="docs-topbar-right">
+          <a href="https://www.npmjs.com/package/coxa-ui" target="_blank" class="icon-btn" title="npm"><i class="ti ti-brand-npm"></i></a>
           <a href="https://github.com/CORITIBA-SAF-TECH/coxa-ui" target="_blank" class="icon-btn" title="GitHub"><i
               class="ti ti-brand-github"></i></a>
           <button class="icon-btn" onclick="toggleDark()" title="Alternar tema"><i id="darkIcon"
@@ -595,7 +612,7 @@
 
           <div style="text-align:center;margin-bottom:36px">
             <img src="ogimage.png" alt="CoxaUI Design System"
-              style="max-width:100%;max-height:520px;border-radius:14px;box-shadow:var(--sh-md)">
+              style="max-width:100%;max-height:350px;border-radius:14px;box-shadow:var(--sh-md)">
           </div>
 
           <!-- INSTALAÇÃO -->
@@ -604,7 +621,8 @@
             <div class="docs-section-title"><i class="ti ti-download"></i> Instalação via CDN</div>
             <p class="docs-section-desc">O CoxaUI não exige nenhum processo de build. Adicione as duas linhas abaixo no
               <code>&lt;head&gt;</code> da sua página para ter acesso a todos os componentes, ícones e utilitários
-              JavaScript.</p>
+              JavaScript.
+            </p>
 
             <div class="docs-subsection">
               <div class="docs-subsection-title">1. Importe via CDN</div>
@@ -638,7 +656,7 @@
     &lt;main class="main"&gt;
       &lt;!-- Conteúdo --&gt;
     &lt;/main&gt;
-    &lt;footer&gt;&lt;span&gt;Meu App &amp;copy; 2025&lt;/span&gt;&lt;/footer&gt;
+    &lt;footer&gt;&lt;span&gt;Meu App &amp;copy; 2026&lt;/span&gt;&lt;/footer&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;/body&gt;
@@ -828,7 +846,8 @@
             <div class="section-anchor"></div>
             <div class="docs-section-title"><i class="ti ti-typography"></i> Tipografia</div>
             <p class="docs-section-desc">Fonte padrão:
-              <code>-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif</code>. Tamanho base: 15px.</p>
+              <code>-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif</code>. Tamanho base: 15px.
+            </p>
 
             <div class="docs-example">
               <h1 style="font-size:1.8rem;color:var(--primary);margin-bottom:8px">Título H1 — 1.8rem / 800</h1>
@@ -1076,7 +1095,7 @@
               (centro absoluto) e <code>.ftr-r</code> (direita). Use <code>.ftr-lnk</code> para links internos.</p>
             <div class="docs-example dark-bg" style="padding:0;border-radius:var(--radius);overflow:hidden">
               <footer>
-                <span class="ftr-l">Minha App &copy; 2025 Coritiba SAF</span>
+                <span class="ftr-l">Minha App &copy; 2026 Coritiba SAF</span>
                 <span class="ftr-c">CoxaUI <span data-coxaui-ver></span></span>
                 <span class="ftr-r"><a href="#" class="ftr-lnk"><i class="ti ti-help"></i> Suporte</a></span>
               </footer>
@@ -1478,7 +1497,7 @@
                     <p class="ci-sub">Procedimentos para lançamento e controle de entradas e saídas financeiras do
                       clube.</p>
                     <div class="ci-meta">
-                      <span><strong>Atualizado:</strong> 28 jun 2025</span>
+                      <span><strong>Atualizado:</strong> 28 jun 2026</span>
                       <span><strong>Por:</strong> Alberto Ramos</span>
                     </div>
                     <div class="tags"><a href="#" class="tag">financeiro</a><a href="#" class="tag">caixa</a></div>
@@ -1489,7 +1508,7 @@
                         BPMN</span></h2>
                     <p class="ci-sub">Fluxo completo de admissão de novos colaboradores.</p>
                     <div class="ci-meta">
-                      <span><strong>Atualizado:</strong> 15 jun 2025</span>
+                      <span><strong>Atualizado:</strong> 15 jun 2026</span>
                     </div>
                   </div>
                 </div>
@@ -2007,19 +2026,19 @@
                 <ul class="timeline">
                   <li class="tl-item">
                     <div class="tl-dot"></div>
-                    <div class="tl-date">28 Jun 2025 · 14h30</div>
+                    <div class="tl-date">28 Jun 2026 · 14h30</div>
                     <div class="tl-title">Manual publicado</div>
                     <div class="tl-body">Documento aprovado e disponibilizado para todos os colaboradores.</div>
                   </li>
                   <li class="tl-item">
                     <div class="tl-dot warn"></div>
-                    <div class="tl-date">25 Jun 2025 · 10h00</div>
+                    <div class="tl-date">25 Jun 2026 · 10h00</div>
                     <div class="tl-title">Em revisão</div>
                     <div class="tl-body">Enviado para aprovação do supervisor.</div>
                   </li>
                   <li class="tl-item">
                     <div class="tl-dot danger"></div>
-                    <div class="tl-date">20 Jun 2025 · 09h15</div>
+                    <div class="tl-date">20 Jun 2026 · 09h15</div>
                     <div class="tl-title">Rascunho criado</div>
                     <div class="tl-body">Documento criado pelo usuário Alberto Ramos.</div>
                   </li>
@@ -2073,7 +2092,7 @@
                 <div class="kv-item"><span class="kv-key">Empresa</span><span class="kv-val">Fornecedor ABC Ltda</span>
                 </div>
                 <div class="kv-divider"></div>
-                <div class="kv-item"><span class="kv-key">Entrada</span><span class="kv-val">28/06/2025 às 08h30</span>
+                <div class="kv-item"><span class="kv-key">Entrada</span><span class="kv-val">28/06/2026 às 08h30</span>
                 </div>
                 <div class="kv-item"><span class="kv-key">Portaria</span><span class="kv-val">Portaria Principal —
                     Sede</span></div>
@@ -2155,7 +2174,8 @@
             <div class="section-anchor"></div>
             <div class="docs-section-title"><i class="ti ti-code"></i> API JavaScript (coxa-ui.js)</div>
             <p class="docs-section-desc">Inclua <code>coxa-ui.js</code> antes do fechamento do
-              <code>&lt;/body&gt;</code>. Todas as funções são globais.</p>
+              <code>&lt;/body&gt;</code>. Todas as funções são globais.
+            </p>
 
             <table class="docs-table">
               <tr>
@@ -2310,7 +2330,7 @@
       <footer>
         <span class="ftr-l"><strong style="color:#fff">CoxaUI</strong> <span
             style="opacity:.55;font-weight:400;font-size:.7rem" data-coxaui-ver></span></span>
-        <span class="ftr-c">&copy; 2025 Coritiba Foot Ball Club</span>
+        <span class="ftr-c">&copy; 2026 Coritiba Foot Ball Club</span>
         <span class="ftr-r">Desenvolvido no 🇧🇷</span>
       </footer>
     </div><!-- /docs-right -->
@@ -2391,7 +2411,7 @@
         'form-upload': '<div class="file-input">\n  <i class="ti ti-upload"></i>\n  Clique ou arraste um arquivo aqui\n  <span>PDF, PNG, BPMN até 50MB</span>\n</div>',
         'form-range': '<label>Prioridade</label>\n<input type="range" min="1" max="10" value="7">',
         'tabelas': '<div class="tbl-wrap">\n  <table>\n    <thead>\n      <tr>\n        <th><input type="checkbox"></th>\n        <th>Nome</th>\n        <th>Status</th>\n        <th>Ações</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td><input type="checkbox" class="sel-chk" data-reg="1" data-nome="João"></td>\n        <td>João da Silva</td>\n        <td><span class="badge-inside">Presente</span></td>\n        <td>\n          <div class="act-dd">\n            <button class="btn btn-sm btn-s act-dd-btn">\n              <i class="ti ti-dots-vertical"></i>\n            </button>\n            <div class="act-dd-menu">\n              <a href="#" class="act-dd-item"><i class="ti ti-eye"></i> Ver</a>\n              <button class="act-dd-item danger"><i class="ti ti-trash"></i> Excluir</button>\n            </div>\n          </div>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n<!-- JS -->\n<script>initTableSearch(\'input-id\', \'#minha-table tbody tr\');<\/script>',
-        'cards-conteudo': '<div class="cards">\n  <div class="card-item">\n    <div class="ci-sec"><a href="#">Financeiro</a></div>\n    <h2><a href="#">Manual de Fluxo de Caixa</a></h2>\n    <p class="ci-sub">Descrição do documento...</p>\n    <div class="ci-meta">\n      <span><strong>Atualizado:</strong> 28 jun 2025</span>\n    </div>\n    <div class="tags">\n      <a href="#" class="tag">financeiro</a>\n    </div>\n  </div>\n</div>',
+        'cards-conteudo': '<div class="cards">\n  <div class="card-item">\n    <div class="ci-sec"><a href="#">Financeiro</a></div>\n    <h2><a href="#">Manual de Fluxo de Caixa</a></h2>\n    <p class="ci-sub">Descrição do documento...</p>\n    <div class="ci-meta">\n      <span><strong>Atualizado:</strong> 28 jun 2026</span>\n    </div>\n    <div class="tags">\n      <a href="#" class="tag">financeiro</a>\n    </div>\n  </div>\n</div>',
         'cards-sec': '<div class="sec-cards">\n  <a href="#" class="sec-card">\n    <div class="sc-name"><i class="ti ti-cash"></i> Financeiro</div>\n    <div class="sc-cnt">12 documentos</div>\n  </a>\n</div>',
         'cards-tipo': '<div class="tipo-cards">\n  <a href="#" class="tipo-card">\n    <span class="tp-icon"><i class="ti ti-file-text"></i></span>\n    <div>\n      <div class="tp-label">Manuais</div>\n      <div class="tp-cnt">24 documentos</div>\n    </div>\n  </a>\n</div>',
         'cards-adm': '<div class="adm-card">\n  <div class="adm-hdr">\n    <h2><i class="ti ti-users"></i> Visitantes</h2>\n    <div class="adm-hdr-actions">\n      <input type="text" placeholder="Filtrar...">\n      <button class="btn btn-p btn-sm"><i class="ti ti-plus"></i> Novo</button>\n    </div>\n  </div>\n</div>',
@@ -2413,14 +2433,14 @@
         'stat-cards': '<div class="stat-cards">\n  <div class="stat-card">\n    <div class="stat-icon green"><i class="ti ti-users"></i></div>\n    <div class="stat-body">\n      <div class="stat-val">42</div>\n      <div class="stat-lbl">Visitantes Presentes</div>\n    </div>\n  </div>\n  <div class="stat-card">\n    <div class="stat-icon blue"><i class="ti ti-login"></i></div>\n    <div class="stat-body">\n      <div class="stat-val">128</div>\n      <div class="stat-lbl">Entradas Hoje</div>\n    </div>\n  </div>\n</div>',
         'filter-pills': '<div class="filter-pills">\n  <a href="#" class="filter-pill active">Todos</a>\n  <a href="#" class="filter-pill"><i class="ti ti-building"></i> Sede</a>\n  <a href="#" class="filter-pill"><i class="ti ti-run"></i> CT</a>\n  <a href="#" class="filter-pill"><i class="ti ti-trophy"></i> Estádio</a>\n</div>',
         'timeline-hist': '<ul class="hist">\n  <li class="hist-item">\n    <span class="hist-badge">Entrada</span>\n    <div class="hist-body">\n      <div class="hist-title">João entrou pela Portaria 1</div>\n      <div class="hist-meta"><span>08h30</span><span>·</span><span>Sede</span></div>\n    </div>\n  </li>\n</ul>',
-        'timeline-vertical': '<ul class="timeline">\n  <li class="tl-item">\n    <div class="tl-dot"></div>\n    <div class="tl-date">28 Jun 2025 · 14h30</div>\n    <div class="tl-title">Manual publicado</div>\n    <div class="tl-body">Aprovado e disponibilizado.</div>\n  </li>\n  <li class="tl-item">\n    <div class="tl-dot warn"></div>\n    <div class="tl-date">25 Jun 2025</div>\n    <div class="tl-title">Em revisão</div>\n  </li>\n</ul>',
+        'timeline-vertical': '<ul class="timeline">\n  <li class="tl-item">\n    <div class="tl-dot"></div>\n    <div class="tl-date">28 Jun 2026 · 14h30</div>\n    <div class="tl-title">Manual publicado</div>\n    <div class="tl-body">Aprovado e disponibilizado.</div>\n  </li>\n  <li class="tl-item">\n    <div class="tl-dot warn"></div>\n    <div class="tl-date">25 Jun 2026</div>\n    <div class="tl-title">Em revisão</div>\n  </li>\n</ul>',
         'steps': '<div class="steps">\n  <div class="step-item done">\n    <div class="step-num"><i class="ti ti-check" style="font-size:.7rem"></i></div>\n    <div class="step-lbl">Localidade</div>\n    <div class="step-line"></div>\n  </div>\n  <div class="step-item active">\n    <div class="step-num">2</div>\n    <div class="step-lbl">Portaria</div>\n    <div class="step-line"></div>\n  </div>\n  <div class="step-item">\n    <div class="step-num">3</div>\n    <div class="step-lbl">Visitante</div>\n  </div>\n</div>',
         'kv': '<div class="kv-list">\n  <div class="kv-item">\n    <span class="kv-key">Nome</span>\n    <span class="kv-val">João da Silva</span>\n  </div>\n  <div class="kv-item">\n    <span class="kv-key">CPF</span>\n    <span class="kv-val">123.456.789-00</span>\n  </div>\n  <div class="kv-divider"></div>\n  <div class="kv-item">\n    <span class="kv-key">Status</span>\n    <span class="kv-val"><span class="badge-inside">Presente</span></span>\n  </div>\n</div>',
         'empty': '<div class="empty">\n  <div class="empty-ico"><i class="ti ti-users"></i></div>\n  <p>Nenhum visitante encontrado.</p>\n  <button class="btn btn-p btn-sm">\n    <i class="ti ti-plus"></i> Registrar Entrada\n  </button>\n</div>',
         'erro': '<div class="err-page">\n  <div class="err-ico"><i class="ti ti-error-404"></i></div>\n  <h1>Página não encontrada</h1>\n  <p>O recurso solicitado não existe.</p>\n  <div class="err-btns">\n    <a href="/" class="btn btn-p"><i class="ti ti-home"></i> Voltar ao Início</a>\n    <a href="#" class="btn btn-ghost">Suporte</a>\n  </div>\n</div>',
         'spinner': '<div class="spinner-box">\n  <div class="spinner-ring"></div>\n  <p>Carregando...</p>\n</div>\n\n<!-- Inline -->\n<div class="spinner-inline"></div>',
         'sel-bar': '<div class="sel-bar" id="sel-bar">\n  <span class="sel-bar-lbl">0 selecionados</span>\n  <button class="btn btn-sm btn-acc">\n    <i class="ti ti-logout"></i> Saída em Lote\n  </button>\n  <button class="btn btn-sm" onclick="clearSel()">\n    <i class="ti ti-x"></i> Limpar\n  </button>\n</div>',
-        'footer': '<footer>\n  <span class="ftr-l">Minha App &copy; 2025 Coritiba SAF</span>\n  <span class="ftr-c">CoxaUI v1.0</span>\n  <span class="ftr-r">\n    <a href="#" class="ftr-lnk">\n      <i class="ti ti-help"></i> Suporte\n    </a>\n  </span>\n</footer>'
+        'footer': '<footer>\n  <span class="ftr-l">Minha App &copy; 2026 Coritiba SAF</span>\n  <span class="ftr-c">CoxaUI v1.0</span>\n  <span class="ftr-r">\n    <a href="#" class="ftr-lnk">\n      <i class="ti ti-help"></i> Suporte\n    </a>\n  </span>\n</footer>'
       };
 
       function injectCodeBar(example, snippetKey) {
@@ -2545,17 +2565,24 @@
       });
     })();
 
-    /* TOC active highlighting */
-    window.addEventListener('scroll', function () {
-      const sections = document.querySelectorAll('.docs-section[id]');
-      let current = '';
-      sections.forEach(function (s) {
-        if (window.scrollY >= s.offsetTop - 80) current = s.id;
-      });
-      document.querySelectorAll('.docs-toc-nav a').forEach(function (a) {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-      });
-    }, { passive: true });
+    /* TOC active highlighting — scroll container is .docs-main, not window */
+    (function () {
+      var docsMain = document.querySelector('.docs-main');
+      if (!docsMain) return;
+      function updateActive() {
+        var sections = document.querySelectorAll('.docs-section[id]');
+        var mainTop = docsMain.getBoundingClientRect().top;
+        var current = '';
+        sections.forEach(function (s) {
+          if (s.getBoundingClientRect().top - mainTop <= 80) current = s.id;
+        });
+        document.querySelectorAll('.docs-toc-nav a').forEach(function (a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+        });
+      }
+      docsMain.addEventListener('scroll', updateActive, { passive: true });
+      updateActive();
+    })();
 
     /* Close modal on overlay click */
     initModalOverlayClose('demo-modal');

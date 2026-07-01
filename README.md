@@ -4,6 +4,10 @@
 
 Kit de componentes de interface para padronização dos projetos web do **Coritiba Foot Ball Club (SAF)**. Sem dependências de build — importe via CDN e comece a usar.
 
+## 📖 Documentação
+
+**https://coritiba-saf-tech.github.io/coxa-ui/**
+
 ---
 
 ## Instalação via CDN
@@ -144,6 +148,22 @@ Tabler Icons v3 auto-importados — use `<i class="ti ti-nome"></i>`. Mais de 5.
 ---
 
 ## Changelog
+
+### v0.0.3 — 01/07/2026
+
+#### Dark mode
+- Correções abrangentes de contraste em modo escuro: 21 seletores corrigidos (`color: var(--primary)` → `#6ee7b7` sobre fundos escuros)
+- Componentes corrigidos: pills/cards de tipo selecionados, loc-card selecionado, card-item hover, link-card ícone, links-tab hover, avatar, field-tag, hist-badge, step-item, modal-title, tabs, post-content (headings, links, tabela, blockquote), bpmn-canvas, btn-ghost hover, form-card h2, adm-hdr h2, pg-hdr h1, text-primary, ci-sec, pv-sec
+
+#### Documentação (index.html)
+- Botões do TOC sidebar seguem o padrão `.sb-lnk`: flex, borda, hover amarelo, active fundo amarelo
+- Active do TOC atualizado conforme rolagem (listener no `.docs-main`, não no `window`)
+- Botão npm no topbar (ao lado de GitHub e dark mode)
+
+#### package.json
+- Adicionados campos `files`, `keywords`, `author`, `jsdelivr`, `unpkg`; removido `type: "commonjs"`
+
+---
 
 ### v0.0.2 — 01/07/2026
 
