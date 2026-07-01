@@ -140,3 +140,42 @@ Tabler Icons v3 auto-importados — use `<i class="ti ti-nome"></i>`. Mais de 5.
 ## Repositório
 
 [github.com/CORITIBA-SAF-TECH/coxa-ui](https://github.com/CORITIBA-SAF-TECH/coxa-ui)
+
+---
+
+## Changelog
+
+### v0.0.2 — 01/07/2026
+
+#### Novidades
+- **Documentação interativa** (`index.html`) com sidebar de navegação, modo escuro e botões "Ver código / Copiar" em cada componente
+- **Seção de instalação via CDN** com estrutura básica de página e alerta de versão beta
+- **Footer fixo** sempre visível — layout `docs-right` com header, conteúdo rolável e footer em coluna
+- **Favicon** e **logo** no cabeçalho da documentação
+- **Botão GitHub** no topbar da docs
+
+#### Componentes
+- `COXAUI_VERSION` exportada no JS — log estilizado no console do navegador na carga
+- `[data-coxaui-ver]` — elementos HTML recebem a versão dinamicamente via JS
+- **Barra de progresso striped** agora é animada por padrão
+- **Seletor de Localidade** (`.loc-card`) corrigido: ícone, nome e quantidade em linhas separadas
+- **Cards de Tipo** (`.tipo-card`) — cor padrão unificada (verde primário)
+
+#### Visual
+- Animações fluidas adicionadas: hover lift em botões e cards, entrada suave em modais, dropdowns e alertas
+- Cores de status escurecidas para maior contraste (nível 200 da paleta)
+- Swatches de cor na docs com nome / variável CSS / hex em linhas separadas
+- Cor "Danger" alterada de vermelho para âmbar (`--amber-bg`) — vermelho é proibido no projeto
+- `code` global estilizado com suporte a modo escuro (`html.dark code`)
+
+#### Correções
+- `<td><code>` legível no modo escuro
+- Ícones na sidebar da documentação
+
+---
+
+### v0.0.1 — 30/06/2026
+
+- Versão inicial do CoxaUI
+- CSS com variáveis de marca, componentes base e modo escuro
+- JS com sidebar, dark mode, SweetAlert2, tabelas, modais, tabs, acordeão e seleção em lote

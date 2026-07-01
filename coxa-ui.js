@@ -1,7 +1,15 @@
 /* ══════════════════════════════════════════════════════════════════
-   CoxaUI v1.0 — JavaScript Utilities
+   CoxaUI — JavaScript Utilities
    Coritiba Foot Ball Club Internal Design System
    ══════════════════════════════════════════════════════════════════ */
+
+const COXAUI_VERSION = '0.0.2';
+
+console.info(
+  '%c CoxaUI v' + COXAUI_VERSION + ' %c 🇧🇷 Coritiba Foot Ball Club — Internal Design System',
+  'background:#006B3C;color:#fad716;font-weight:800;padding:2px 6px;border-radius:4px 0 0 4px',
+  'background:#f0f9f4;color:#005530;font-weight:600;padding:2px 6px;border-radius:0 4px 4px 0'
+);
 
 /* ── Dependências auto-injetadas ── */
 (function () {
@@ -275,6 +283,11 @@ function copyToClipboard(text, feedbackEl) {
 
 /* ── DOM ready init ── */
 document.addEventListener('DOMContentLoaded', function() {
+  /* Injeta versão nos elementos marcados */
+  document.querySelectorAll('[data-coxaui-ver]').forEach(function(el) {
+    el.textContent = 'v' + COXAUI_VERSION;
+  });
+
   initDark();
   initDropdowns();
   initAccordion();

@@ -4,6 +4,26 @@
   "description": "Kit de componentes de interface para padronização dos projetos web do Coritiba SAF",
   "main": "coxa-ui.js",
   "style": "coxa-ui.css",
+  "jsdelivr": "coxa-ui.js",
+  "unpkg": "coxa-ui.js",
+  "files": [
+    "coxa-ui.css",
+    "coxa-ui.js",
+    "logo.ico",
+    "logo.png",
+    "ogimage.png"
+  ],
+  "keywords": [
+    "design-system",
+    "ui",
+    "components",
+    "css",
+    "coritiba",
+    "coritiba-saf",
+    "coxa-ui"
+  ],
+  "author": "Coritiba Foot Ball Club — SAF",
+  "license": "ISC",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,10 +31,6 @@
     "type": "git",
     "url": "git+https://github.com/CORITIBA-SAF-TECH/coxa-ui.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/CORITIBA-SAF-TECH/coxa-ui/issues"
   },
