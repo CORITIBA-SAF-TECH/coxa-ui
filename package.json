@@ -1,6 +1,6 @@
 {
   "name": "coxa-ui",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Kit de componentes de interface para padronização dos projetos web do Coritiba SAF",
   "main": "coxa-ui.js",
   "style": "coxa-ui.css",
