@@ -164,9 +164,9 @@ i.ti { font-size: 1.05em; line-height: 1; vertical-align: -2px; }
   transition: width .22s cubic-bezier(.4,0,.2,1), min-width .22s cubic-bezier(.4,0,.2,1);
 }
 .sidebar.collapsed { width: 60px; min-width: 60px; }
-.sidebar.collapsed .sb-brand    { padding: 14px 0 10px 6px; align-items: flex-start; }
+.sidebar.collapsed .sb-brand    { margin-top: 50px; border-top: 1px solid rgba(255,255,255,.14); padding: 12px 4px 10px; }
 .sidebar.collapsed .sb-brand-lnk { gap: 0; }
-.sidebar.collapsed .sb-brand img { max-height: 30px; width: auto; }
+.sidebar.collapsed .sb-brand img { max-height: 50px; width: auto; }
 .sidebar.collapsed .sb-brand-txt { display: none; }
 .sidebar.collapsed .sb-grp-lbl  { display: none; }
 .sidebar.collapsed .sb-hdr      { display: none; }
@@ -193,7 +193,7 @@ i.ti { font-size: 1.05em; line-height: 1; vertical-align: -2px; }
 }
 .sb-toggle-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--sb-dark); }
 .sb-toggle-btn i { transition: transform .22s cubic-bezier(.4,0,.2,1); }
-.sidebar.collapsed + .sb-toggle-btn { left: 60px; }
+.sidebar.collapsed + .sb-toggle-btn { left: 30px; }
 .sidebar.collapsed + .sb-toggle-btn i { transform: rotate(180deg); }
 
 /* Tooltip flutuante da sidebar recolhida (elemento injetado via JS
@@ -242,6 +242,9 @@ i.ti { font-size: 1.05em; line-height: 1; vertical-align: -2px; }
   gap: 10px; text-decoration: none !important;
 }
 .sb-brand-lnk:hover { opacity: .88; text-decoration: none !important; }
+.sb-brand img { height: 100px; width: auto; }
+.sb-brand-lnk img { transition: transform .18s cubic-bezier(.4,0,.2,1); }
+.sb-brand-lnk:hover img { transform: scale(1.2); }
 .sb-logo { height: 100px; width: auto; }
 .sb-brand-txt { display: flex; flex-direction: column; gap: 3px; align-items: center; }
 .sb-brand-docs {
