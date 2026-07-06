@@ -26,142 +26,6 @@
     body {
       height: 100vh;
       overflow: hidden;
-      display: block;
-    }
-
-    .docs-wrap {
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .docs-toc {
-      width: 240px;
-      min-width: 240px;
-      background: var(--hdr-bg);
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow-y: auto;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .docs-toc::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    .docs-toc::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, .2);
-      border-radius: 4px;
-    }
-
-    .docs-toc-brand {
-      padding: 18px 16px 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, .15);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .docs-toc-brand .logo-mark {
-      width: 32px;
-      height: 32px;
-      background: var(--accent);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      color: #003e38;
-      font-size: .9rem;
-      flex-shrink: 0;
-    }
-
-    .docs-toc-brand .brand-info {
-      min-width: 0;
-    }
-
-    .docs-toc-brand .brand-name {
-      font-weight: 800;
-      color: #fff;
-      font-size: .98rem;
-    }
-
-    .docs-toc-brand .brand-ver {
-      font-size: .66rem;
-      color: rgba(255, 255, 255, .55);
-    }
-
-    .docs-toc-nav {
-      flex: 1;
-      padding: 8px 0 20px;
-    }
-
-    .docs-toc-nav a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      margin: 2px 8px;
-      border-radius: 8px;
-      font-size: .84rem;
-      font-weight: 600;
-      color: rgba(255, 255, 255, .82);
-      border: 1px solid rgba(255, 255, 255, .18);
-      text-decoration: none;
-      transition: all .12s;
-    }
-
-    .docs-toc-nav a:hover {
-      background: rgba(250, 215, 22, .12);
-      color: var(--accent);
-      border-color: rgba(250, 215, 22, .45);
-      text-decoration: none;
-    }
-
-    .docs-toc-nav a.active {
-      background: var(--accent);
-      color: #003e38;
-      font-weight: 700;
-      border-color: var(--accent);
-    }
-
-    .docs-toc-nav a.active i { color: #003e38; }
-
-    .docs-toc-nav a i {
-      font-size: 1rem;
-      flex-shrink: 0;
-      color: rgba(255, 255, 255, .65);
-    }
-
-    .docs-toc-section {
-      display: block;
-      font-size: .62rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      color: rgba(255, 255, 255, .35);
-      margin-top: 14px;
-      padding: 0 16px 3px;
-      pointer-events: none;
-    }
-
-    .docs-toc-footer {
-      padding: 10px 16px;
-      border-top: 1px solid rgba(255, 255, 255, .12);
-      font-size: .7rem;
-      color: rgba(255, 255, 255, .4);
-      text-align: center;
-    }
-
-    .docs-right {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      overflow: hidden;
     }
 
     .docs-main {
@@ -407,31 +271,7 @@
     }
 
     @media (max-width: 768px) {
-      .docs-toc {
-        display: none;
-      }
-
-      body {
-        height: auto;
-        overflow: auto;
-      }
-
-      .docs-wrap {
-        height: auto;
-        overflow: visible;
-      }
-
-      .docs-right {
-        overflow: visible;
-      }
-
-      .docs-main {
-        overflow-y: visible;
-      }
-
-      .docs-content {
-        padding: 20px 16px 40px;
-      }
+      .docs-content { padding: 20px 16px 40px; }
     }
 
     /* ── Code toggle ── */
@@ -445,10 +285,6 @@
       background: var(--surface2);
       border-radius: 0 0 var(--radius) var(--radius);
       margin-bottom: 10px;
-    }
-
-    .docs-example+.code-bar {
-      /* connects visually */
     }
 
     .docs-example:has(+ .code-bar) {
@@ -524,65 +360,72 @@
 
 <body>
 
-  <div class="docs-wrap">
+  <div class="app-layout">
 
-    <!-- ── TOC Sidebar ─────────────────────────────────────────────── -->
-    <nav class="docs-toc">
-      <div class="docs-toc-brand">
-
-        <div class="logo-mark">CFC</div>
-        <div class="brand-info">
-          <div class="brand-name">CoxaUI </div>
-          <div class="brand-ver">Coritiba Foot Ball Club</div>
-        </div>
-
+    <!-- ── Sidebar ─────────────────────────────────────────────────── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sb-hdr">
+        <span>Menu</span>
+        <button class="sb-close" onclick="closeSidebar()"><i class="ti ti-x"></i></button>
       </div>
-      <div class="docs-toc-nav">
-        <a href="#instalacao"><i class="ti ti-download"></i> Instalação</a>
-        <span class="docs-toc-section">Fundamentos</span>
-        <a href="#cores"><i class="ti ti-droplet"></i> Cores & Variáveis</a>
-        <a href="#tipografia"><i class="ti ti-typography"></i> Tipografia</a>
-        <a href="#icones"><i class="ti ti-icons"></i> Ícones</a>
-
-        <span class="docs-toc-section">Layout</span>
-        <a href="#header"><i class="ti ti-layout-navbar"></i> Header</a>
-        <a href="#sidebar"><i class="ti ti-align-box-left-bottom"></i> Sidebar</a>
-        <a href="#footer"><i class="ti ti-layout-bottombar"></i> Footer</a>
-        <a href="#breadcrumb"><i class="ti ti-direction"></i> Breadcrumb</a>
-
-        <span class="docs-toc-section">Componentes</span>
-        <a href="#botoes"><i class="ti ti-pointer"></i> Botões</a>
-        <a href="#formularios"><i class="ti ti-forms"></i> Formulários</a>
-        <a href="#tabelas"><i class="ti ti-table"></i> Tabelas</a>
-        <a href="#cards"><i class="ti ti-layout-cards"></i> Cards</a>
-        <a href="#badges"><i class="ti ti-tag"></i> Badges & Tags</a>
-        <a href="#alertas"><i class="ti ti-alert-circle"></i> Alertas</a>
-        <a href="#modal"><i class="ti ti-square"></i> Modal</a>
-        <a href="#tabs"><i class="ti ti-layout-columns"></i> Abas (Tabs)</a>
-        <a href="#accordion"><i class="ti ti-list-details"></i> Accordion</a>
-        <a href="#progress"><i class="ti ti-trending-up"></i> Progresso</a>
-        <a href="#dropdown"><i class="ti ti-chevron-down"></i> Dropdown</a>
-        <a href="#avatar"><i class="ti ti-user-circle"></i> Avatar</a>
-
-        <span class="docs-toc-section">Padrões</span>
-        <a href="#stat-cards"><i class="ti ti-chart-bar"></i> Stat Cards</a>
-        <a href="#timeline"><i class="ti ti-timeline"></i> Timeline</a>
-        <a href="#empty"><i class="ti ti-ghost"></i> Estado Vazio</a>
-        <a href="#spinner"><i class="ti ti-loader-2"></i> Spinner</a>
-
-        <span class="docs-toc-section">JavaScript</span>
-        <a href="#js-api"><i class="ti ti-code"></i> API JavaScript</a>
-      </div>
-    </nav>
-
-    <!-- ── Main ────────────────────────────────────────────────────── -->
-    <div class="docs-right">
-      <div class="docs-topbar">
-        <a href="index.html" style="text-decoration:none">
-          <h1 style="display:flex;align-items:center;gap:10px"><img src="logo.png" alt="Coritiba"
-              style="height:30px;width:auto;display:block"><span
-              style="color:#fff;font-size:1rem;font-weight:800;letter-spacing:-.2px">CoxaUI Design System</span></h1>
+      <div class="sb-brand">
+        <a href="index.html" class="sb-brand-lnk">
+          <img src="logo.png" alt="Coritiba" style="height:64px;width:auto;border-radius:50%">
+          <div class="sb-brand-txt">
+            <span class="sb-brand-docs">design system · <span data-coxaui-ver></span></span>
+            <span class="sb-brand-club">Coritiba Foot Ball Club</span>
+          </div>
         </a>
+      </div>
+      <div class="sb-scroll">
+        <div class="sb-nav">
+          <a href="#instalacao" class="sb-lnk" data-label="Instalação"><i class="ti ti-download"></i><span>Instalação</span></a>
+          <div class="sb-grp-lbl">Fundamentos</div>
+          <a href="#cores" class="sb-lnk" data-label="Cores &amp; Variáveis"><i class="ti ti-droplet"></i><span>Cores &amp; Variáveis</span></a>
+          <a href="#tipografia" class="sb-lnk" data-label="Tipografia"><i class="ti ti-typography"></i><span>Tipografia</span></a>
+          <a href="#icones" class="sb-lnk" data-label="Ícones"><i class="ti ti-icons"></i><span>Ícones</span></a>
+          <div class="sb-grp-lbl">Layout</div>
+          <a href="#header" class="sb-lnk" data-label="Header"><i class="ti ti-layout-navbar"></i><span>Header</span></a>
+          <a href="#sidebar" class="sb-lnk" data-label="Sidebar"><i class="ti ti-align-box-left-bottom"></i><span>Sidebar</span></a>
+          <a href="#footer" class="sb-lnk" data-label="Footer"><i class="ti ti-layout-bottombar"></i><span>Footer</span></a>
+          <a href="#breadcrumb" class="sb-lnk" data-label="Breadcrumb"><i class="ti ti-direction"></i><span>Breadcrumb</span></a>
+          <div class="sb-grp-lbl">Componentes</div>
+          <a href="#botoes" class="sb-lnk" data-label="Botões"><i class="ti ti-pointer"></i><span>Botões</span></a>
+          <a href="#formularios" class="sb-lnk" data-label="Formulários"><i class="ti ti-forms"></i><span>Formulários</span></a>
+          <a href="#tabelas" class="sb-lnk" data-label="Tabelas"><i class="ti ti-table"></i><span>Tabelas</span></a>
+          <a href="#cards" class="sb-lnk" data-label="Cards"><i class="ti ti-layout-cards"></i><span>Cards</span></a>
+          <a href="#badges" class="sb-lnk" data-label="Badges &amp; Tags"><i class="ti ti-tag"></i><span>Badges &amp; Tags</span></a>
+          <a href="#alertas" class="sb-lnk" data-label="Alertas"><i class="ti ti-alert-circle"></i><span>Alertas</span></a>
+          <a href="#modal" class="sb-lnk" data-label="Modal"><i class="ti ti-square"></i><span>Modal</span></a>
+          <a href="#tabs" class="sb-lnk" data-label="Abas (Tabs)"><i class="ti ti-layout-columns"></i><span>Abas (Tabs)</span></a>
+          <a href="#accordion" class="sb-lnk" data-label="Accordion"><i class="ti ti-list-details"></i><span>Accordion</span></a>
+          <a href="#progress" class="sb-lnk" data-label="Progresso"><i class="ti ti-trending-up"></i><span>Progresso</span></a>
+          <a href="#dropdown" class="sb-lnk" data-label="Dropdown"><i class="ti ti-chevron-down"></i><span>Dropdown</span></a>
+          <a href="#avatar" class="sb-lnk" data-label="Avatar"><i class="ti ti-user-circle"></i><span>Avatar</span></a>
+          <div class="sb-grp-lbl">Padrões</div>
+          <a href="#stat-cards" class="sb-lnk" data-label="Stat Cards"><i class="ti ti-chart-bar"></i><span>Stat Cards</span></a>
+          <a href="#timeline" class="sb-lnk" data-label="Timeline"><i class="ti ti-timeline"></i><span>Timeline</span></a>
+          <a href="#empty" class="sb-lnk" data-label="Estado Vazio"><i class="ti ti-ghost"></i><span>Estado Vazio</span></a>
+          <a href="#spinner" class="sb-lnk" data-label="Spinner"><i class="ti ti-loader-2"></i><span>Spinner</span></a>
+          <div class="sb-grp-lbl">JavaScript</div>
+          <a href="#js-api" class="sb-lnk" data-label="API JavaScript"><i class="ti ti-code"></i><span>API JavaScript</span></a>
+        </div>
+      </div>
+    </aside>
+    <button class="sb-toggle-btn" onclick="toggleSidebar()" title="Recolher menu"><i class="ti ti-chevron-left"></i></button>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+    <!-- ── Content ──────────────────────────────────────────────────── -->
+    <div class="content-col">
+      <div class="docs-topbar">
+        <div style="display:flex;align-items:center;gap:10px">
+          <button class="menu-btn" onclick="toggleSidebar()" title="Menu"><i class="ti ti-menu-2"></i></button>
+          <a href="index.html" style="text-decoration:none">
+            <h1 style="display:flex;align-items:center;gap:10px"><img src="logo.png" alt="Coritiba"
+                style="height:30px;width:auto;display:block"><span
+                style="color:#fff;font-size:1rem;font-weight:800;letter-spacing:-.2px">CoxaUI Design System</span></h1>
+          </a>
+        </div>
         <div class="docs-topbar-right">
           <a href="https://www.npmjs.com/package/coxa-ui" target="_blank" class="icon-btn" title="npm"><i class="ti ti-brand-npm"></i></a>
           <a href="https://github.com/CORITIBA-SAF-TECH/coxa-ui" target="_blank" class="icon-btn" title="GitHub"><i
@@ -1009,32 +852,82 @@
 
             <div class="docs-subsection">
               <div class="docs-subsection-title">Sidebar simples (grupos + badges)</div>
-              <div class="docs-example" style="padding:0;overflow:hidden;border-radius:var(--radius);max-width:260px">
-                <nav style="background:#00544d;display:flex;flex-direction:column;min-height:300px">
-                  <div class="sb-brand">
-                    <a href="#" class="sb-brand-lnk">
-                      <img src="https://placehold.co/70x70/ffffff/006B3C?text=CFC" alt="Coritiba"
-                        style="height:70px;width:auto;border-radius:50%">
-                      <div class="sb-brand-txt">
-                        <span class="sb-brand-docs">controle de acesso</span>
-                        <span class="sb-brand-club">Coritiba Foot Ball Club</span>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="sb-scroll">
-                    <div class="sb-nav">
-                      <a href="#" class="sb-lnk active"><i
-                          class="ti ti-layout-dashboard"></i><span>Dashboard</span><span class="sb-badge">5</span></a>
-                      <div class="sb-grp-lbl">Operações</div>
-                      <a href="#" class="sb-lnk"><i class="ti ti-login"></i><span>Registrar Entrada</span></a>
-                      <a href="#" class="sb-lnk"><i class="ti ti-logout"></i><span>Registrar Saída</span></a>
-                      <a href="#" class="sb-lnk"><i class="ti ti-history"></i><span>Histórico</span></a>
-                      <div class="sb-grp-lbl">Cadastros</div>
-                      <a href="#" class="sb-lnk"><i class="ti ti-building"></i><span>Localidades</span></a>
-                      <a href="#" class="sb-lnk"><i class="ti ti-users"></i><span>Visitantes</span></a>
+              <p style="margin:4px 0 10px;font-size:.82rem;color:var(--muted)">
+                Coloque <code>.sb-toggle-btn</code> como irmão direto do <code>.sidebar</code>, logo após ele —
+                é um botão circular flutuante sobre a borda, que acompanha a largura ao recolher/expandir.
+                Com a sidebar recolhida, passar o mouse nos ícones mostra um tooltip automático com o nome do link
+                (usa <code>data-label</code> se existir; senão, o texto do próprio <code>&lt;span&gt;</code>).
+              </p>
+
+              <!-- Demo: expandida -->
+              <div style="font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px">Expandida</div>
+              <div class="docs-example" style="padding:0;overflow:hidden;border-radius:var(--radius)">
+                <div style="display:flex;min-height:280px;position:relative">
+                  <aside style="background:var(--sb-bg);display:flex;flex-direction:column;width:255px;min-width:255px;flex-shrink:0;overflow:hidden">
+                    <div class="sb-brand">
+                      <a href="#" class="sb-brand-lnk">
+                        <img src="https://placehold.co/60x60/ffffff/006B3C?text=CFC" alt="Coritiba" style="height:60px;width:auto;border-radius:50%">
+                        <div class="sb-brand-txt">
+                          <span class="sb-brand-docs">controle de acesso</span>
+                          <span class="sb-brand-club">Coritiba Foot Ball Club</span>
+                        </div>
+                      </a>
                     </div>
+                    <div class="sb-scroll">
+                      <div class="sb-nav">
+                        <a href="#" class="sb-lnk active" data-label="Dashboard"><i class="ti ti-layout-dashboard"></i><span>Dashboard</span><span class="sb-badge">5</span></a>
+                        <div class="sb-grp-lbl">Operações</div>
+                        <a href="#" class="sb-lnk" data-label="Registrar Entrada"><i class="ti ti-login"></i><span>Registrar Entrada</span></a>
+                        <a href="#" class="sb-lnk" data-label="Registrar Saída"><i class="ti ti-logout"></i><span>Registrar Saída</span></a>
+                        <a href="#" class="sb-lnk" data-label="Histórico"><i class="ti ti-history"></i><span>Histórico</span></a>
+                        <div class="sb-grp-lbl">Cadastros</div>
+                        <a href="#" class="sb-lnk" data-label="Localidades"><i class="ti ti-building"></i><span>Localidades</span></a>
+                        <a href="#" class="sb-lnk" data-label="Visitantes"><i class="ti ti-users"></i><span>Visitantes</span></a>
+                      </div>
+                    </div>
+                  </aside>
+                  <button class="sb-toggle-btn" title="Recolher menu">
+                    <i class="ti ti-chevron-left"></i>
+                  </button>
+                  <div style="flex:1;background:var(--surface2);display:flex;align-items:center;justify-content:center">
+                    <span style="font-size:.82rem;color:var(--muted)">conteúdo da página</span>
                   </div>
-                </nav>
+                </div>
+              </div>
+
+              <!-- Demo: recolhida -->
+              <div style="font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 6px">Recolhida — passe o mouse nos ícones</div>
+              <div class="docs-example" style="padding:0;overflow:hidden;border-radius:var(--radius)">
+                <div style="display:flex;min-height:260px;position:relative">
+                  <aside class="sidebar collapsed" style="border-radius:var(--radius) 0 0 var(--radius)">
+                    <div class="sb-brand">
+                      <a href="#" class="sb-brand-lnk">
+                        <img src="https://placehold.co/38x38/ffffff/006B3C?text=C" alt="Coritiba" style="border-radius:50%">
+                        <div class="sb-brand-txt">
+                          <span class="sb-brand-docs">controle de acesso</span>
+                          <span class="sb-brand-club">Coritiba Foot Ball Club</span>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="sb-scroll">
+                      <div class="sb-nav">
+                        <a href="#" class="sb-lnk active" data-label="Dashboard"><i class="ti ti-layout-dashboard"></i><span>Dashboard</span><span class="sb-badge">5</span></a>
+                        <a href="#" class="sb-lnk" data-label="Registrar Entrada"><i class="ti ti-login"></i><span>Registrar Entrada</span></a>
+                        <a href="#" class="sb-lnk" data-label="Registrar Saída"><i class="ti ti-logout"></i><span>Registrar Saída</span></a>
+                        <a href="#" class="sb-lnk" data-label="Histórico"><i class="ti ti-history"></i><span>Histórico</span></a>
+                        <div class="sb-grp-lbl">Cadastros</div>
+                        <a href="#" class="sb-lnk" data-label="Localidades"><i class="ti ti-building"></i><span>Localidades</span></a>
+                        <a href="#" class="sb-lnk" data-label="Visitantes"><i class="ti ti-users"></i><span>Visitantes</span></a>
+                      </div>
+                    </div>
+                  </aside>
+                  <button class="sb-toggle-btn" title="Expandir menu">
+                    <i class="ti ti-chevron-left"></i>
+                  </button>
+                  <div style="flex:1;background:var(--surface2);border-radius:0 var(--radius) var(--radius) 0;display:flex;align-items:center;justify-content:center">
+                    <span style="font-size:.82rem;color:var(--muted)">conteúdo da página</span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -2333,8 +2226,8 @@
         <span class="ftr-c">&copy; 2026 Coritiba Foot Ball Club</span>
         <span class="ftr-r">Desenvolvido no 🇧🇷</span>
       </footer>
-    </div><!-- /docs-right -->
-  </div><!-- /docs-wrap -->
+    </div><!-- /content-col -->
+  </div><!-- /app-layout -->
   <script src="coxa-ui.js"></script>
   <script>
     /* Demo: table search */
@@ -2395,7 +2288,7 @@
         'tipografia-home': '<div class="home-sec-ttl"><i class="ti ti-star"></i> Manuais em Destaque</div>',
         'icones': '<!-- Tabler Icons v3 — incluído pelo CoxaUI -->\n<i class="ti ti-home"></i>\n<i class="ti ti-users"></i>\n<i class="ti ti-settings"></i>\n<i class="ti ti-edit"></i>\n<i class="ti ti-trash"></i>\n<!-- Catálogo completo: https://tabler.io/icons -->',
         'header': '<header>\n  <button class="menu-btn" onclick="toggleSidebar()">\n    <i class="ti ti-menu-2"></i>\n  </button>\n  <img src="/logo.png" alt="Logo" class="hdr-logo">\n  <div class="hdr-page">\n    <i class="ti ti-layout-dashboard"></i>\n    <div class="hdr-page-txt">\n      <span class="hdr-page-title">Dashboard</span>\n      <span class="hdr-page-desc">Visão geral</span>\n    </div>\n  </div>\n  <div class="hdr-right">\n    <span class="hdr-clock" id="live-clock">00:00:00</span>\n    <button class="icon-btn" onclick="toggleDark()">\n      <i class="ti ti-moon" id="darkIcon"></i>\n    </button>\n    <a href="/entrada" class="btn-new"><i class="ti ti-login"></i> Entrada</a>\n  </div>\n</header>',
-        'sidebar-simples': '<nav class="sidebar" id="sidebar" style="background:#00544d">\n  <div class="sb-brand">\n    <a href="#" class="sb-brand-lnk">\n      <img src="/logo.png" alt="Logo">\n      <div class="sb-brand-txt">\n        <span class="sb-brand-docs">controle de acesso</span>\n        <span class="sb-brand-club">Coritiba Foot Ball Club</span>\n      </div>\n    </a>\n  </div>\n  <div class="sb-scroll">\n    <div class="sb-nav">\n      <a href="/" class="sb-lnk active">\n        <i class="ti ti-layout-dashboard"></i>\n        <span>Dashboard</span>\n        <span class="sb-badge">5</span>\n      </a>\n      <div class="sb-grp-lbl">Operações</div>\n      <a href="/entrada" class="sb-lnk">\n        <i class="ti ti-login"></i><span>Registrar Entrada</span>\n      </a>\n    </div>\n  </div>\n</nav>',
+        'sidebar-simples': '<div class="app-layout">\n\n  <aside class="sidebar" id="sidebar">\n    <!-- Cabeçalho mobile -->\n    <div class="sb-hdr">\n      <span>Menu</span>\n      <button class="sb-close" onclick="closeSidebar()">\n        <i class="ti ti-x"></i>\n      </button>\n    </div>\n\n    <!-- Logo/brand -->\n    <div class="sb-brand">\n      <a href="/" class="sb-brand-lnk">\n        <img src="/logo.png" alt="Logo" style="height:64px;border-radius:50%">\n        <div class="sb-brand-txt">\n          <span class="sb-brand-docs">controle de acesso</span>\n          <span class="sb-brand-club">Coritiba Foot Ball Club</span>\n        </div>\n      </a>\n    </div>\n\n    <!-- Links de navegação -->\n    <div class="sb-scroll">\n      <div class="sb-nav">\n        <a href="/" class="sb-lnk active" data-label="Dashboard">\n          <i class="ti ti-layout-dashboard"></i>\n          <span>Dashboard</span>\n          <span class="sb-badge">5</span>\n        </a>\n        <div class="sb-grp-lbl">Operações</div>\n        <a href="/entrada" class="sb-lnk" data-label="Registrar Entrada">\n          <i class="ti ti-login"></i>\n          <span>Registrar Entrada</span>\n        </a>\n        <a href="/saida" class="sb-lnk" data-label="Registrar Saída">\n          <i class="ti ti-logout"></i>\n          <span>Registrar Saída</span>\n        </a>\n        <a href="/historico" class="sb-lnk" data-label="Histórico">\n          <i class="ti ti-history"></i>\n          <span>Histórico</span>\n        </a>\n        <div class="sb-grp-lbl">Cadastros</div>\n        <a href="/localidades" class="sb-lnk" data-label="Localidades">\n          <i class="ti ti-building"></i>\n          <span>Localidades</span>\n        </a>\n        <a href="/visitantes" class="sb-lnk" data-label="Visitantes">\n          <i class="ti ti-users"></i>\n          <span>Visitantes</span>\n        </a>\n      </div>\n    </div>\n  </aside>\n\n  <!-- Botão circular flutuante (desktop) — irmão direto do .sidebar.\n       O tooltip da sidebar recolhida é automático: usa data-label\n       ou o texto do <span> de cada .sb-lnk -->\n  <button class="sb-toggle-btn" onclick="toggleSidebar()" title="Recolher menu">\n    <i class="ti ti-chevron-left"></i>\n  </button>\n\n  <div class="overlay" id="overlay" onclick="closeSidebar()"></div>\n\n  <div class="content-col">\n    <header>...</header>\n    <main class="main">...</main>\n    <footer>...</footer>\n  </div>\n\n</div>',
         'sidebar-accordion': '<div class="sb-sec open">\n  <div class="sb-sec-hdr">\n    <a href="#" class="sb-sec-lnk">\n      <i class="ti ti-folder"></i> Financeiro\n      <span class="sb-sec-cnt">3</span>\n    </a>\n    <button class="sb-arr-btn"\n      onclick="this.closest(\'.sb-sec\').classList.toggle(\'open\')">\n      <i class="ti ti-chevron-right arr"></i>\n    </button>\n  </div>\n  <ul class="sb-list">\n    <li><a href="#" class="active">Fluxo de Caixa</a></li>\n    <li><a href="#">Contas a Pagar</a></li>\n  </ul>\n</div>',
         'breadcrumb': '<nav class="bc">\n  <a href="/">Início</a>\n  <span class="bc-sep"><i class="ti ti-chevron-right"></i></span>\n  <a href="/financeiro">Financeiro</a>\n  <span class="bc-sep"><i class="ti ti-chevron-right"></i></span>\n  <span>Fluxo de Caixa</span>\n</nav>',
         'botoes-cores': '<button class="btn btn-p"><i class="ti ti-check"></i> Primário</button>\n<button class="btn btn-acc"><i class="ti ti-star"></i> Accent</button>\n<button class="btn btn-s">Secundário</button>\n<button class="btn btn-d"><i class="ti ti-trash"></i> Danger</button>\n<button class="btn btn-w"><i class="ti ti-alert-triangle"></i> Warning</button>\n<button class="btn btn-ghost">Ghost</button>',
@@ -2576,7 +2469,7 @@
         sections.forEach(function (s) {
           if (s.getBoundingClientRect().top - mainTop <= 80) current = s.id;
         });
-        document.querySelectorAll('.docs-toc-nav a').forEach(function (a) {
+        document.querySelectorAll('.sb-lnk').forEach(function (a) {
           a.classList.toggle('active', a.getAttribute('href') === '#' + current);
         });
       }

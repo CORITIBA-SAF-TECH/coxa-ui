@@ -3,7 +3,7 @@
    Coritiba Foot Ball Club Internal Design System
    ══════════════════════════════════════════════════════════════════ */
 
-const COXAUI_VERSION = '0.0.3';
+const COXAUI_VERSION = '0.0.4';
 
 console.info(
   '%c CoxaUI v' + COXAUI_VERSION + ' %c 🇧🇷 Coritiba Foot Ball Club — Internal Design System',
@@ -27,8 +27,15 @@ console.info(
 
 /* ── Sidebar ── */
 function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
-  document.getElementById('overlay').classList.toggle('open');
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('overlay');
+  if (!sb) return;
+  if (window.innerWidth <= 768) {
+    sb.classList.toggle('open');
+    if (ov) ov.classList.toggle('open');
+  } else {
+    sb.classList.toggle('collapsed');
+  }
 }
 function closeSidebar() {
   const sb = document.getElementById('sidebar');
@@ -38,6 +45,39 @@ function closeSidebar() {
 }
 function toggleSec(btn) {
   btn.closest('.sb-sec').classList.toggle('open');
+}
+
+/* ── Tooltip da sidebar recolhida ──
+   Injetado no <body> com position:fixed para não ser cortado
+   pelo overflow do .sb-scroll. Usa data-label se existir,
+   senão o texto do <span> do próprio link. */
+function initSidebarTooltips() {
+  let tip = null, curLnk = null;
+  function hideTip() {
+    if (tip) { tip.remove(); tip = null; }
+    curLnk = null;
+  }
+  document.addEventListener('mouseover', function (e) {
+    const lnk = e.target.closest ? e.target.closest('.sb-lnk, .sb-home') : null;
+    if (!lnk || !lnk.closest('.sidebar.collapsed')) { hideTip(); return; }
+    if (lnk === curLnk) return;
+    hideTip();
+    const span = lnk.querySelector('span');
+    const label = lnk.getAttribute('data-label') || (span ? span.textContent.trim() : '');
+    if (!label) return;
+    curLnk = lnk;
+    tip = document.createElement('div');
+    tip.className = 'sb-tooltip';
+    tip.textContent = label;
+    document.body.appendChild(tip);
+    const r = lnk.getBoundingClientRect();
+    tip.style.left = (r.right + 12) + 'px';
+    tip.style.top = (r.top + r.height / 2) + 'px';
+    requestAnimationFrame(function () { if (tip) tip.classList.add('show'); });
+  });
+  document.addEventListener('scroll', hideTip, true);
+  document.addEventListener('click', hideTip, true);
+  document.documentElement.addEventListener('mouseleave', hideTip);
 }
 
 /* ── Dark mode ── */
@@ -292,6 +332,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initDropdowns();
   initAccordion();
   initPageSpinner();
+  initSidebarTooltips();
 
   /* Auto-open active sidebar sections */
   const act = document.querySelector('.sb-list a.active');
