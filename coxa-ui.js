@@ -3,7 +3,7 @@
    Coritiba Foot Ball Club Internal Design System
    ══════════════════════════════════════════════════════════════════ */
 
-const COXAUI_VERSION = '0.0.5';
+const COXAUI_VERSION = '0.0.6';
 
 console.info(
   '%c CoxaUI v' + COXAUI_VERSION + ' %c 🇧🇷 Coritiba Foot Ball Club — Internal Design System',
@@ -17,6 +17,13 @@ console.info(
   if (localStorage.getItem('coxaui-dark') === '1')
     document.documentElement.classList.add('dark');
 
+  /* Sidebar recolhida por padrão no desktop — antes do primeiro paint
+     para não animar a largura na carga. Se o usuário expandir,
+     a preferência fica salva em localStorage ('coxaui-sb'). */
+  var sb = document.getElementById('sidebar');
+  if (sb && window.innerWidth > 768 && localStorage.getItem('coxaui-sb') !== 'open')
+    sb.classList.add('collapsed');
+
   /* SweetAlert2 */
   if (!window.Swal) {
     var s = document.createElement('script');
@@ -26,6 +33,8 @@ console.info(
 })();
 
 /* ── Sidebar ── */
+const SB_KEY = 'coxaui-sb';
+
 function toggleSidebar() {
   const sb = document.getElementById('sidebar');
   const ov = document.getElementById('overlay');
@@ -35,6 +44,7 @@ function toggleSidebar() {
     if (ov) ov.classList.toggle('open');
   } else {
     sb.classList.toggle('collapsed');
+    localStorage.setItem(SB_KEY, sb.classList.contains('collapsed') ? 'collapsed' : 'open');
   }
 }
 function closeSidebar() {
@@ -333,6 +343,12 @@ document.addEventListener('DOMContentLoaded', function() {
   initAccordion();
   initPageSpinner();
   initSidebarTooltips();
+
+  /* Sidebar recolhida por padrão — fallback caso o script tenha
+     carregado no <head> sem defer (o #sidebar ainda não existia) */
+  const sbInit = document.getElementById('sidebar');
+  if (sbInit && window.innerWidth > 768 && localStorage.getItem(SB_KEY) !== 'open')
+    sbInit.classList.add('collapsed');
 
   /* Auto-open active sidebar sections */
   const act = document.querySelector('.sb-list a.active');
