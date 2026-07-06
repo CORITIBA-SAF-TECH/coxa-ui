@@ -243,8 +243,6 @@ i.ti { font-size: 1.05em; line-height: 1; vertical-align: -2px; }
 }
 .sb-brand-lnk:hover { opacity: .88; text-decoration: none !important; }
 .sb-brand img { height: 100px; width: auto; }
-.sb-brand-lnk img { transition: transform .18s cubic-bezier(.4,0,.2,1); }
-.sb-brand-lnk:hover img { transform: scale(1.2); }
 .sb-logo { height: 100px; width: auto; }
 .sb-brand-txt { display: flex; flex-direction: column; gap: 3px; align-items: center; }
 .sb-brand-docs {
