@@ -1078,6 +1078,7 @@
                   <button class="btn btn-p btn-lg"><i class="ti ti-plus"></i> Grande</button>
                   <button class="btn btn-p"><i class="ti ti-plus"></i> Normal</button>
                   <button class="btn btn-p btn-sm"><i class="ti ti-plus"></i> Pequeno</button>
+                  <button class="btn btn-p btn-xs"><i class="ti ti-plus"></i> Mínimo</button>
                 </div>
               </div>
             </div>
@@ -1690,7 +1691,7 @@
             <div class="docs-example">
               <button class="btn btn-p" onclick="openModal('demo-modal')"><i class="ti ti-eye"></i> Abrir Modal</button>
               <button class="btn btn-d btn-sm"
-                onclick="coxaConfirm({submit:function(){}}, 'Confirmar exclusão', 'Esta ação não pode ser desfeita.', 'warning', 'Excluir', '#e53e3e')"><i
+                onclick="coxaConfirm({submit:function(){}}, 'Confirmar exclusão', 'Esta ação não pode ser desfeita.', 'warning', 'Excluir', '#ea580c')"><i
                   class="ti ti-trash"></i> Confirm Dialog</button>
               <button class="btn btn-acc btn-sm" onclick="coxaToast('success', 'Operação realizada com sucesso!')"><i
                   class="ti ti-bell"></i> Toast</button>
@@ -1713,6 +1714,39 @@
                 <div class="modal-actions">
                   <button class="btn btn-s" onclick="closeModal('demo-modal')">Cancelar</button>
                   <button class="btn btn-saida"><i class="ti ti-logout"></i> Confirmar Saída</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="docs-subsection" style="margin-top:20px">
+              <div class="docs-subsection-title">Tamanhos</div>
+              <p style="margin:4px 0 10px;font-size:.82rem;color:var(--muted)">
+                Adicione <code>.modal-xs</code>, <code>.modal-sm</code>, <code>.modal-lg</code>,
+                <code>.modal-xl</code> ou <code>.modal-full</code> ao <code>.modal-box</code>
+                (sem classe extra o padrão é 480px).
+              </p>
+              <div class="docs-example">
+                <div class="demo-gap">
+                  <button class="btn btn-s btn-sm" onclick="openSizedModal('modal-xs')">XS · 300px</button>
+                  <button class="btn btn-s btn-sm" onclick="openSizedModal('modal-sm')">SM · 380px</button>
+                  <button class="btn btn-s btn-sm" onclick="openSizedModal('')">Padrão · 480px</button>
+                  <button class="btn btn-s btn-sm" onclick="openSizedModal('modal-lg')">LG · 680px</button>
+                  <button class="btn btn-s btn-sm" onclick="openSizedModal('modal-xl')">XL · 920px</button>
+                  <button class="btn btn-s btn-sm" onclick="openSizedModal('modal-full')">Full · 96vw</button>
+                </div>
+              </div>
+            </div>
+            <!-- Modal de demonstração de tamanhos -->
+            <div class="modal-overlay" id="demo-modal-sizes">
+              <div class="modal-box">
+                <div class="modal-title"><i class="ti ti-arrows-maximize"></i> Modal <span id="size-modal-lbl">padrão</span>
+                  <button class="modal-close" onclick="closeModal('demo-modal-sizes')"><i class="ti ti-x"></i></button>
+                </div>
+                <p style="font-size:.88rem;color:var(--text2);margin:10px 0 0">
+                  Este modal está usando a classe <code id="size-modal-cls">.modal-box</code>.
+                </p>
+                <div class="modal-actions">
+                  <button class="btn btn-s" onclick="closeModal('demo-modal-sizes')">Fechar</button>
                 </div>
               </div>
             </div>
@@ -2405,7 +2439,7 @@
         'sidebar-accordion': '<div class="sb-sec open">\n  <div class="sb-sec-hdr">\n    <a href="#" class="sb-sec-lnk">\n      <i class="ti ti-folder"></i> Financeiro\n      <span class="sb-sec-cnt">3</span>\n    </a>\n    <button class="sb-arr-btn"\n      onclick="this.closest(\'.sb-sec\').classList.toggle(\'open\')">\n      <i class="ti ti-chevron-right arr"></i>\n    </button>\n  </div>\n  <ul class="sb-list">\n    <li><a href="#" class="active">Fluxo de Caixa</a></li>\n    <li><a href="#">Contas a Pagar</a></li>\n  </ul>\n</div>',
         'breadcrumb': '<nav class="bc">\n  <a href="/">Início</a>\n  <span class="bc-sep"><i class="ti ti-chevron-right"></i></span>\n  <a href="/financeiro">Financeiro</a>\n  <span class="bc-sep"><i class="ti ti-chevron-right"></i></span>\n  <span>Fluxo de Caixa</span>\n</nav>',
         'botoes-cores': '<button class="btn btn-p"><i class="ti ti-check"></i> Primário</button>\n<button class="btn btn-acc"><i class="ti ti-star"></i> Accent</button>\n<button class="btn btn-s">Secundário</button>\n<button class="btn btn-d"><i class="ti ti-trash"></i> Danger</button>\n<button class="btn btn-w"><i class="ti ti-alert-triangle"></i> Warning</button>\n<button class="btn btn-ghost">Ghost</button>',
-        'botoes-tamanhos': '<button class="btn btn-p btn-lg">Grande</button>\n<button class="btn btn-p">Normal</button>\n<button class="btn btn-p btn-sm">Pequeno</button>',
+        'botoes-tamanhos': '<button class="btn btn-p btn-lg">Grande</button>\n<button class="btn btn-p">Normal</button>\n<button class="btn btn-p btn-sm">Pequeno</button>\n<button class="btn btn-p btn-xs">Mínimo</button>',
         'botoes-header': '<a href="#" class="btn-new"><i class="ti ti-login"></i> Entrada</a>\n<a href="#" class="btn-new-alt"><i class="ti ti-logout"></i> Saída</a>\n<button class="icon-btn"><i class="ti ti-moon"></i></button>',
         'botoes-entrada-saida': '<a href="#" class="btn-entrada"><i class="ti ti-login"></i> Registrar Entrada</a>\n<a href="#" class="btn-saida"><i class="ti ti-logout"></i> Registrar Saída</a>',
         'botoes-grupo': '<div class="btn-group">\n  <button class="btn btn-s btn-sm"><i class="ti ti-list"></i> Lista</button>\n  <button class="btn btn-p btn-sm"><i class="ti ti-grid-dots"></i> Grid</button>\n  <button class="btn btn-s btn-sm"><i class="ti ti-table"></i> Tabela</button>\n</div>',
@@ -2598,6 +2632,17 @@
 
     /* Close modal on overlay click */
     initModalOverlayClose('demo-modal');
+    initModalOverlayClose('demo-modal-sizes');
+
+    /* Demo de tamanhos de modal */
+    function openSizedModal(cls) {
+      var box = document.querySelector('#demo-modal-sizes .modal-box');
+      box.className = 'modal-box' + (cls ? ' ' + cls : '');
+      document.getElementById('size-modal-lbl').textContent = cls ? cls.replace('modal-', '').toUpperCase() : 'padrão';
+      document.getElementById('size-modal-cls').textContent = cls ? '.modal-box.' + cls : '.modal-box';
+      openModal('demo-modal-sizes');
+    }
+    window.openSizedModal = openSizedModal;
 
     /* Demos de gráficos (Chart.js auto-injetado — coxaChart aguarda a carga) */
     coxaChart('demo-chart-line', {

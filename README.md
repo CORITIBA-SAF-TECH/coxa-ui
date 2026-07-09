@@ -152,6 +152,26 @@ Tabler Icons v3 auto-importados — use `<i class="ti ti-nome"></i>`. Mais de 5.
 
 ## Changelog
 
+### v0.1.1 — 09/07/2026
+
+#### Componentes
+- **`.btn-xs`** — novo tamanho de botão, menor que o `btn-sm` (23px de altura, fonte `.7rem`)
+- **Tamanhos de modal** — `modal-xs` (300px), `modal-sm` (380px), `modal-lg` (680px), `modal-xl` (920px) e `modal-full` (96vw) aplicáveis ao `.modal-box`
+
+#### Visual
+- **Botão secundário (`.btn-s`)** com mais destaque: verde-acinzentado (`#d9e4dd`) com borda `#aec9ba` e hover próprio; overrides equivalentes no modo escuro
+- **Bordas dos inputs** mais visíveis e alinhadas à paleta: `--input-border` agora é `#aec9ba` (light) / `#6d8878` (dark) — vale para inputs, selects, textareas e combobox
+- **Hover nos dropdowns (`.act-dd-item`)** destacado: fundo `--primary-lt` com texto verde (`#6ee7b7` no dark); item `danger` com hover âmbar próprio
+- **Linha pendente (`.row-pend`)** mais laranja (opacidade do fundo de 8% → 17%)
+- **Título de Seção (`.home-sec-ttl`)**: ícone e texto com recuo (`padding-left`), separador segue na largura total; removido o bold
+- **`.form-g`** mais compacto (`margin-bottom` 14px → 9px)
+
+#### Documentação
+- Demo de tamanhos de botão inclui o `btn-xs`; nova subseção "Tamanhos" no Modal com demonstração interativa
+- Corrigido vermelho `#e53e3e` no demo do Confirm Dialog → laranja `#ea580c` (vermelho é proibido no projeto)
+
+---
+
 ### v0.1.0 — 09/07/2026
 
 *Consolida as versões 0.0.4 a 0.1.0.*

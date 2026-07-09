@@ -3,7 +3,7 @@
    Coritiba Foot Ball Club Internal Design System
    ══════════════════════════════════════════════════════════════════ */
 
-const COXAUI_VERSION = '0.1.0';
+const COXAUI_VERSION = '0.1.1';
 
 console.info(
   '%c CoxaUI v' + COXAUI_VERSION + ' %c 🇧🇷 Coritiba Foot Ball Club — Internal Design System',
