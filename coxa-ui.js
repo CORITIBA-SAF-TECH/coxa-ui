@@ -3,7 +3,7 @@
    Coritiba Foot Ball Club Internal Design System
    ══════════════════════════════════════════════════════════════════ */
 
-const COXAUI_VERSION = '0.0.9';
+const COXAUI_VERSION = '0.1.0';
 
 console.info(
   '%c CoxaUI v' + COXAUI_VERSION + ' %c 🇧🇷 Coritiba Foot Ball Club — Internal Design System',
@@ -29,6 +29,13 @@ console.info(
     var s = document.createElement('script');
     s.src = 'https://cdn.jsdelivr.net/npm/sweetalert2@11';
     document.head.appendChild(s);
+  }
+
+  /* Chart.js v4 */
+  if (!window.Chart) {
+    var c = document.createElement('script');
+    c.src = 'https://cdn.jsdelivr.net/npm/chart.js@4';
+    document.head.appendChild(c);
   }
 })();
 
@@ -90,6 +97,95 @@ function initSidebarTooltips() {
   document.documentElement.addEventListener('mouseleave', hideTip);
 }
 
+/* ── Combobox (select com busca) ──
+   Markup: .combo > .combo-input (texto) + .combo-arrow + .combo-list
+   com .combo-opt (button) e .combo-empty opcional.
+   Se existir um input hidden .combo-value, ele recebe data-value
+   da opção escolhida (para quando o valor difere do rótulo). */
+function comboNorm(s) {
+  return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+}
+function initCombos() {
+  function closeAll(except) {
+    document.querySelectorAll('.combo.open').forEach(function (c) {
+      if (c !== except) c.classList.remove('open');
+    });
+  }
+  function filterCombo(combo, qOverride) {
+    const inp = combo.querySelector('.combo-input');
+    const q = comboNorm(qOverride !== undefined ? qOverride : inp.value.trim());
+    let visible = 0;
+    combo.querySelectorAll('.combo-opt').forEach(function (o) {
+      const show = !q || comboNorm(o.textContent).indexOf(q) !== -1;
+      o.hidden = !show;
+      o.classList.remove('hl');
+      if (show) visible++;
+    });
+    const empty = combo.querySelector('.combo-empty');
+    if (empty) empty.style.display = visible ? 'none' : 'block';
+  }
+  document.addEventListener('focusin', function (e) {
+    if (!e.target.classList || !e.target.classList.contains('combo-input')) return;
+    const combo = e.target.closest('.combo');
+    if (!combo) return;
+    closeAll(combo);
+    combo.classList.add('open');
+    filterCombo(combo, '');           /* mostra todas ao focar */
+    e.target.select();
+  });
+  document.addEventListener('input', function (e) {
+    if (!e.target.classList || !e.target.classList.contains('combo-input')) return;
+    const combo = e.target.closest('.combo');
+    if (!combo) return;
+    combo.classList.add('open');
+    filterCombo(combo);
+  });
+  document.addEventListener('click', function (e) {
+    const opt = e.target.closest('.combo-opt');
+    if (opt) {
+      const combo = opt.closest('.combo');
+      const inp = combo.querySelector('.combo-input');
+      const hid = combo.querySelector('.combo-value');
+      const label = opt.textContent.trim();
+      inp.value = label;
+      if (hid) hid.value = opt.dataset.value !== undefined ? opt.dataset.value : label;
+      combo.classList.remove('open');
+      inp.dispatchEvent(new Event('change', { bubbles: true }));
+      return;
+    }
+    if (!e.target.closest('.combo')) closeAll();
+  });
+  document.addEventListener('keydown', function (e) {
+    const inp = e.target;
+    if (!inp.classList || !inp.classList.contains('combo-input')) return;
+    const combo = inp.closest('.combo');
+    if (!combo) return;
+    if (e.key === 'Escape') { combo.classList.remove('open'); return; }
+    const opts = Array.prototype.filter.call(
+      combo.querySelectorAll('.combo-opt'),
+      function (o) { return !o.hidden; }
+    );
+    if (e.key === 'Enter') {
+      const hl = combo.querySelector('.combo-opt.hl');
+      if (combo.classList.contains('open') && (hl || opts.length === 1)) {
+        e.preventDefault();
+        (hl || opts[0]).click();
+      }
+      return;
+    }
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+    e.preventDefault();
+    combo.classList.add('open');
+    if (!opts.length) return;
+    let i = -1;
+    opts.forEach(function (o, idx) { if (o.classList.contains('hl')) i = idx; });
+    i = e.key === 'ArrowDown' ? Math.min(i + 1, opts.length - 1) : Math.max(i - 1, 0);
+    opts.forEach(function (o) { o.classList.remove('hl'); });
+    opts[i].classList.add('hl');
+    opts[i].scrollIntoView({ block: 'nearest' });
+  });
+}
+
 /* ── Dark mode ── */
 const DARK_KEY = 'coxaui-dark';
 
@@ -103,6 +199,7 @@ function toggleDark() {
   document.documentElement.classList.toggle('dark');
   localStorage.setItem(DARK_KEY, document.documentElement.classList.contains('dark') ? '1' : '0');
   syncDarkIcon();
+  syncChartsTheme();
 }
 function initDark(storageKey) {
   const key = storageKey || DARK_KEY;
@@ -110,6 +207,77 @@ function initDark(storageKey) {
     document.documentElement.classList.add('dark');
   }
   syncDarkIcon();
+}
+
+/* ── Gráficos (Chart.js v4 auto-injetado) ──
+   coxaChart(idOuCanvas, config) cria o gráfico já com a paleta da
+   marca e o tema claro/escuro correto. Datasets sem cor definida
+   recebem as cores automaticamente — todas variações do verde
+   primary, alternando tons escuros e claros para contraste. */
+const COXA_CHART_COLORS = [
+  '#006B3C', /* verde Coritiba (primary) */
+  '#34d399', /* esmeralda claro          */
+  '#004526', /* verde escuro             */
+  '#6ee7b7', /* esmeralda mais claro     */
+  '#059669', /* esmeralda médio          */
+  '#a7f3d0', /* verde pastel             */
+  '#065f46', /* verde profundo           */
+  '#10b981'  /* esmeralda                */
+];
+const _coxaCharts = [];
+
+function _chartTheme() {
+  const dark = document.documentElement.classList.contains('dark');
+  return {
+    text: dark ? '#d1d5db' : '#4b5563',
+    grid: dark ? 'rgba(255,255,255,.09)' : 'rgba(0,0,0,.07)',
+    ring: dark ? '#1f2937' : '#fff'
+  };
+}
+
+function coxaChart(target, config) {
+  /* Chart.js é injetado de forma assíncrona — aguarda se necessário */
+  if (typeof Chart === 'undefined') {
+    return new Promise(function (resolve) {
+      (function wait() {
+        if (typeof Chart !== 'undefined') { resolve(coxaChart(target, config)); return; }
+        setTimeout(wait, 80);
+      })();
+    });
+  }
+  const el = typeof target === 'string' ? document.getElementById(target) : target;
+  if (!el) return null;
+
+  const th = _chartTheme();
+  Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
+  Chart.defaults.color = th.text;
+  Chart.defaults.borderColor = th.grid;
+
+  ((config.data && config.data.datasets) || []).forEach(function (ds, i) {
+    const cor = COXA_CHART_COLORS[i % COXA_CHART_COLORS.length];
+    const tipo = ds.type || config.type;   /* suporta gráficos mistos */
+    const circular = ['pie', 'doughnut', 'polarArea'].indexOf(tipo) !== -1;
+    if (ds.backgroundColor === undefined)
+      ds.backgroundColor = circular ? COXA_CHART_COLORS
+        : (tipo === 'line' || tipo === 'radar') ? cor + '2e'
+        : tipo === 'bubble' ? cor + '99'
+        : cor;
+    if (ds.borderColor === undefined)
+      ds.borderColor = circular ? th.ring : cor;
+  });
+
+  const chart = new Chart(el, config);
+  _coxaCharts.push(chart);
+  return chart;
+}
+
+/* Reaplica o tema (texto/grade) aos gráficos existentes — chamado ao alternar o dark mode */
+function syncChartsTheme() {
+  if (typeof Chart === 'undefined' || !_coxaCharts.length) return;
+  const th = _chartTheme();
+  Chart.defaults.color = th.text;
+  Chart.defaults.borderColor = th.grid;
+  _coxaCharts.forEach(function (ch) { ch.update(); });
 }
 
 /* ── SweetAlert2 helpers ── */
@@ -343,6 +511,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initAccordion();
   initPageSpinner();
   initSidebarTooltips();
+  initCombos();
 
   /* Sidebar recolhida por padrão — fallback caso o script tenha
      carregado no <head> sem defer (o #sidebar ainda não existia) */

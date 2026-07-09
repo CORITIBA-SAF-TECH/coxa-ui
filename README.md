@@ -22,7 +22,7 @@ Adicione as duas linhas abaixo no `<head>` da sua página:
 <script src="https://cdn.jsdelivr.net/npm/coxa-ui/coxa-ui.js" defer></script>
 ```
 
-> O CoxaUI auto-injeta o **Tabler Icons v3** e o **SweetAlert2 v11** — você não precisa importá-los separadamente.
+> O CoxaUI auto-injeta o **Tabler Icons v3**, o **SweetAlert2 v11** e o **Chart.js v4** — você não precisa importá-los separadamente.
 
 ---
 
@@ -82,7 +82,8 @@ Adicione as duas linhas abaixo no `<head>` da sua página:
 | **Cards** | `card-item` com `card-header` e `card-body` |
 | **Stat Cards** | `stat-card` com `stat-label`, `stat-value`, `stat-trend` |
 | **Tabelas** | `table` dentro de `tbl-wrap`, com `tbl-toolbar` e dropdown de ações |
-| **Formulários** | `form-control`, `form-label`, `form-group`, `input-icon-wrap`, `chk-wrap`, validação `is-invalid` |
+| **Formulários** | `form-control`, `form-label`, `form-group`, `input-icon-wrap`, `chk-wrap`, validação `is-invalid`, input de horário (`type=time`), combobox com busca (`.combo`) |
+| **Gráficos** | Chart.js v4 auto-injetado — `coxaChart(id, config)` com paleta da marca e tema claro/escuro |
 | **Progresso** | `progress` + `progress-bar` com variantes `progress-success`, `progress-warning`, `progress-danger` |
 | **Tabs** | `.tabs` + `.tab` + `.tab-panel` — controlado via `switchTab()` |
 | **Acordeão** | `.accordion` + `.accordion-item` + `.accordion-btn` — controlado via `initAccordion()` |
@@ -116,6 +117,8 @@ Tabler Icons v3 auto-importados — use `<i class="ti ti-nome"></i>`. Mais de 5.
 | `initTableSearch(inputId, selector)` | Filtro de busca em tabela |
 | `switchTab(btn, panelId)` | Troca aba ativa |
 | `initAccordion()` | Inicializa acordeão |
+| `initCombos()` | Combobox com busca (auto-inicializado) |
+| `coxaChart(id, config)` | Cria gráfico Chart.js com paleta da marca |
 | `initPageSpinner()` | Spinner de navegação global |
 | `copyToClipboard(text, el?)` | Copia texto para clipboard |
 | `mkSlug(text)` | Gera slug a partir de texto |
@@ -148,6 +151,34 @@ Tabler Icons v3 auto-importados — use `<i class="ti ti-nome"></i>`. Mais de 5.
 ---
 
 ## Changelog
+
+### v0.1.0 — 09/07/2026
+
+*Consolida as versões 0.0.4 a 0.1.0.*
+
+#### Sidebar
+- **Botão circular flutuante** na borda para recolher/expandir (estilo Notion/GitBook) — 32px, hover amarelo com chevron verde-escuro, acompanha a sidebar ao animar
+- **Recolhida por padrão no desktop** — a escolha do usuário (aberta/fechada) fica salva em `localStorage` (`coxaui-sb`); aplicada antes do primeiro paint, sem piscar
+- **Modo recolhido (60px)**: só ícones, com **tooltip automático** no hover (usa `data-label` ou o texto do `<span>` do link)
+- Logo padrão: **100px** expandida, **50px** recolhida — abaixo do botão de recolher, com linha divisória
+- Links da sidebar (`.sb-lnk`) **sem borda** em todos os estados
+- Nome "Coritiba Foot Ball Club" removido da marca (`.sb-brand-club` oculto)
+
+#### Novos componentes
+- **Input de horário** — `input[type=time]` com o estilo padrão dos demais inputs; ícone do picker legível no modo escuro
+- **Combobox** (`.combo`) — select com busca: digite e as opções são filtradas (ignora acentos); teclado ↑/↓, Enter, Esc; valor ≠ rótulo via `input.combo-value` + `data-value`; inicializado automaticamente (`initCombos()`)
+- **Gráficos** — Chart.js v4 auto-injetado; `coxaChart(id, config)` aplica a paleta da marca e o tema claro/escuro automaticamente
+
+#### Visual
+- Modo claro: fundo da página mais escuro (`--bg: #dfe3e8`) para destacar os cards brancos
+- Dark mode: `chk-opt`, `tipo-opt` e `input[type=range]` corrigidos (texto `#6ee7b7`, `accent-color #34d399`)
+
+#### Documentação
+- Demos da sidebar (expandida e recolhida) refeitos com o novo botão e tooltip funcionais
+- Novos exemplos: Horário (HH:MM), Select com busca (Combobox) e Gráficos
+- Stat Cards agora fica junto da seção de Cards
+
+---
 
 ### v0.0.3 — 01/07/2026
 

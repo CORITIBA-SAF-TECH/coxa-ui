@@ -393,6 +393,7 @@
           <a href="#formularios" class="sb-lnk" data-label="Formulários"><i class="ti ti-forms"></i><span>Formulários</span></a>
           <a href="#tabelas" class="sb-lnk" data-label="Tabelas"><i class="ti ti-table"></i><span>Tabelas</span></a>
           <a href="#cards" class="sb-lnk" data-label="Cards"><i class="ti ti-layout-cards"></i><span>Cards</span></a>
+          <a href="#stat-cards" class="sb-lnk" data-label="Stat Cards"><i class="ti ti-chart-bar"></i><span>Stat Cards</span></a>
           <a href="#badges" class="sb-lnk" data-label="Badges &amp; Tags"><i class="ti ti-tag"></i><span>Badges &amp; Tags</span></a>
           <a href="#alertas" class="sb-lnk" data-label="Alertas"><i class="ti ti-alert-circle"></i><span>Alertas</span></a>
           <a href="#modal" class="sb-lnk" data-label="Modal"><i class="ti ti-square"></i><span>Modal</span></a>
@@ -402,7 +403,7 @@
           <a href="#dropdown" class="sb-lnk" data-label="Dropdown"><i class="ti ti-chevron-down"></i><span>Dropdown</span></a>
           <a href="#avatar" class="sb-lnk" data-label="Avatar"><i class="ti ti-user-circle"></i><span>Avatar</span></a>
           <div class="sb-grp-lbl">Padrões</div>
-          <a href="#stat-cards" class="sb-lnk" data-label="Stat Cards"><i class="ti ti-chart-bar"></i><span>Stat Cards</span></a>
+          <a href="#graficos" class="sb-lnk" data-label="Gráficos"><i class="ti ti-chart-line"></i><span>Gráficos</span></a>
           <a href="#timeline" class="sb-lnk" data-label="Timeline"><i class="ti ti-timeline"></i><span>Timeline</span></a>
           <a href="#empty" class="sb-lnk" data-label="Estado Vazio"><i class="ti ti-ghost"></i><span>Estado Vazio</span></a>
           <a href="#spinner" class="sb-lnk" data-label="Spinner"><i class="ti ti-loader-2"></i><span>Spinner</span></a>
@@ -1270,6 +1271,52 @@
                 <input type="range" min="1" max="10" value="7" style="margin-top:8px">
               </div>
             </div>
+
+            <div class="docs-subsection" style="margin-top:20px">
+              <div class="docs-subsection-title">Horário (HH:MM)</div>
+              <div class="docs-example">
+                <div class="form-row">
+                  <div class="form-g">
+                    <label>Horário de Entrada <span class="req">*</span></label>
+                    <input type="time" value="08:30">
+                  </div>
+                  <div class="form-g">
+                    <label>Horário de Saída</label>
+                    <input type="time">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="docs-subsection" style="margin-top:20px">
+              <div class="docs-subsection-title">Select com busca (Combobox)</div>
+              <p style="margin:4px 0 10px;font-size:.82rem;color:var(--muted)">
+                Um select em que o usuário pode digitar: as opções que não combinam com o texto são
+                ocultadas conforme ele escreve. Setas ↑/↓ navegam, Enter seleciona, Esc fecha.
+                Inicializado automaticamente pelo <code>coxa-ui.js</code>. Se o valor enviado precisar
+                ser diferente do rótulo, adicione um <code>&lt;input type="hidden" class="combo-value"&gt;</code>
+                e um <code>data-value</code> em cada opção.
+              </p>
+              <div class="docs-example">
+                <div class="form-g" style="max-width:340px">
+                  <label>Departamento</label>
+                  <div class="combo">
+                    <input type="text" class="combo-input" placeholder="Selecione ou digite..." autocomplete="off">
+                    <i class="ti ti-chevron-down combo-arrow"></i>
+                    <div class="combo-list">
+                      <button type="button" class="combo-opt">Financeiro</button>
+                      <button type="button" class="combo-opt">Recursos Humanos</button>
+                      <button type="button" class="combo-opt">Tecnologia da Informação</button>
+                      <button type="button" class="combo-opt">Comunicação &amp; Marketing</button>
+                      <button type="button" class="combo-opt">Jurídico</button>
+                      <button type="button" class="combo-opt">Futebol — Base</button>
+                      <button type="button" class="combo-opt">Futebol — Profissional</button>
+                      <div class="combo-empty">Nenhuma opção encontrada</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- TABELAS -->
@@ -1485,6 +1532,46 @@
                         class="ti ti-building-bank"></i></span><span class="link-nome">Banco</span></a>
                   <a href="#" class="link-card"><span class="link-ico-ph"><i class="ti ti-chart-bar"></i></span><span
                       class="link-nome">BI Reports</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STAT CARDS -->
+          <div class="docs-section" id="stat-cards">
+            <div class="section-anchor"></div>
+            <div class="docs-section-title"><i class="ti ti-chart-bar"></i> Stat Cards</div>
+            <p class="docs-section-desc">Cards de métricas para dashboards. Grid automático com <span
+                class="cls">.stat-cards</span>.</p>
+            <div class="docs-example">
+              <div class="stat-cards">
+                <div class="stat-card">
+                  <div class="stat-icon green"><i class="ti ti-users"></i></div>
+                  <div class="stat-body">
+                    <div class="stat-val">42</div>
+                    <div class="stat-lbl">Visitantes Presentes</div>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-icon blue"><i class="ti ti-login"></i></div>
+                  <div class="stat-body">
+                    <div class="stat-val">128</div>
+                    <div class="stat-lbl">Entradas Hoje</div>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-icon orange"><i class="ti ti-alert-circle"></i></div>
+                  <div class="stat-body">
+                    <div class="stat-val">3</div>
+                    <div class="stat-lbl">Ocorrências</div>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-icon purple"><i class="ti ti-file-text"></i></div>
+                  <div class="stat-body">
+                    <div class="stat-val">87</div>
+                    <div class="stat-lbl">Documentos</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1824,41 +1911,56 @@
           <!-- PADRÕES                                                 -->
           <!-- ════════════════════════════════════════════════════════ -->
 
-          <!-- STAT CARDS -->
-          <div class="docs-section" id="stat-cards">
+          <!-- GRÁFICOS -->
+          <div class="docs-section" id="graficos">
             <div class="section-anchor"></div>
-            <div class="docs-section-title"><i class="ti ti-chart-bar"></i> Stat Cards</div>
-            <p class="docs-section-desc">Cards de métricas para dashboards. Grid automático com <span
-                class="cls">.stat-cards</span>.</p>
+            <div class="docs-section-title"><i class="ti ti-chart-line"></i> Gráficos</div>
+            <p class="docs-section-desc">O CoxaUI auto-injeta o <strong>Chart.js v4</strong>. Use
+              <code>coxaChart(id, config)</code> no lugar de <code>new Chart()</code>: datasets sem cor definida
+              recebem a paleta da marca automaticamente — todas <strong>variações do verde primary</strong>,
+              alternando tons escuros e claros — e o texto/grade seguem o tema claro/escuro, inclusive ao
+              alternar o dark mode.</p>
             <div class="docs-example">
-              <div class="stat-cards">
-                <div class="stat-card">
-                  <div class="stat-icon green"><i class="ti ti-users"></i></div>
-                  <div class="stat-body">
-                    <div class="stat-val">42</div>
-                    <div class="stat-lbl">Visitantes Presentes</div>
-                  </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px">
+                <div>
+                  <div class="docs-subsection-title" style="margin-bottom:8px">Linha</div>
+                  <div style="height:240px"><canvas id="demo-chart-line"></canvas></div>
                 </div>
-                <div class="stat-card">
-                  <div class="stat-icon blue"><i class="ti ti-login"></i></div>
-                  <div class="stat-body">
-                    <div class="stat-val">128</div>
-                    <div class="stat-lbl">Entradas Hoje</div>
-                  </div>
+                <div>
+                  <div class="docs-subsection-title" style="margin-bottom:8px">Barras</div>
+                  <div style="height:240px"><canvas id="demo-chart-bar"></canvas></div>
                 </div>
-                <div class="stat-card">
-                  <div class="stat-icon orange"><i class="ti ti-alert-circle"></i></div>
-                  <div class="stat-body">
-                    <div class="stat-val">3</div>
-                    <div class="stat-lbl">Ocorrências</div>
-                  </div>
+                <div>
+                  <div class="docs-subsection-title" style="margin-bottom:8px">Rosca (doughnut)</div>
+                  <div style="height:240px"><canvas id="demo-chart-doughnut"></canvas></div>
                 </div>
-                <div class="stat-card">
-                  <div class="stat-icon purple"><i class="ti ti-file-text"></i></div>
-                  <div class="stat-body">
-                    <div class="stat-val">87</div>
-                    <div class="stat-lbl">Documentos</div>
-                  </div>
+                <div>
+                  <div class="docs-subsection-title" style="margin-bottom:8px">Barras horizontais</div>
+                  <div style="height:240px"><canvas id="demo-chart-hbar"></canvas></div>
+                </div>
+                <div>
+                  <div class="docs-subsection-title" style="margin-bottom:8px">Pizza (pie)</div>
+                  <div style="height:240px"><canvas id="demo-chart-pie"></canvas></div>
+                </div>
+                <div>
+                  <div class="docs-subsection-title" style="margin-bottom:8px">Área polar (polarArea)</div>
+                  <div style="height:240px"><canvas id="demo-chart-polar"></canvas></div>
+                </div>
+                <div>
+                  <div class="docs-subsection-title" style="margin-bottom:8px">Radar</div>
+                  <div style="height:240px"><canvas id="demo-chart-radar"></canvas></div>
+                </div>
+                <div>
+                  <div class="docs-subsection-title" style="margin-bottom:8px">Dispersão (scatter)</div>
+                  <div style="height:240px"><canvas id="demo-chart-scatter"></canvas></div>
+                </div>
+                <div>
+                  <div class="docs-subsection-title" style="margin-bottom:8px">Bolhas (bubble)</div>
+                  <div style="height:240px"><canvas id="demo-chart-bubble"></canvas></div>
+                </div>
+                <div>
+                  <div class="docs-subsection-title" style="margin-bottom:8px">Misto (barras + linha)</div>
+                  <div style="height:240px"><canvas id="demo-chart-misto"></canvas></div>
                 </div>
               </div>
             </div>
@@ -2127,6 +2229,18 @@
                 <td>Filtro ao vivo para tabelas</td>
               </tr>
               <tr>
+                <td><code>initCombos()</code></td>
+                <td>Inicializa comboboxes <code>.combo</code> (chamado automaticamente no load)</td>
+              </tr>
+              <tr>
+                <td><code>coxaChart(id, config)</code></td>
+                <td>Cria gráfico Chart.js com a paleta da marca e tema claro/escuro</td>
+              </tr>
+              <tr>
+                <td><code>syncChartsTheme()</code></td>
+                <td>Reaplica o tema aos gráficos (chamado automaticamente por <code>toggleDark()</code>)</td>
+              </tr>
+              <tr>
                 <td><code>updateClock()</code></td>
                 <td>Atualiza elemento #live-clock com hora atual (HH:MM:SS)</td>
               </tr>
@@ -2302,6 +2416,9 @@
         'form-localidade': '<div class="loc-grid">\n  <label class="loc-card">\n    <input type="radio" name="loc" checked>\n    <span class="loc-icon"><i class="ti ti-building"></i></span>\n    <span class="loc-name">Sede</span>\n    <span class="loc-sub">2 portarias</span>\n  </label>\n  <label class="loc-card">\n    <input type="radio" name="loc">\n    <span class="loc-icon"><i class="ti ti-run"></i></span>\n    <span class="loc-name">CT</span>\n    <span class="loc-sub">3 portarias</span>\n  </label>\n</div>',
         'form-upload': '<div class="file-input">\n  <i class="ti ti-upload"></i>\n  Clique ou arraste um arquivo aqui\n  <span>PDF, PNG, BPMN até 50MB</span>\n</div>',
         'form-range': '<label>Prioridade</label>\n<input type="range" min="1" max="10" value="7">',
+        'form-horario': '<div class="form-g">\n  <label>Horário de Entrada <span class="req">*</span></label>\n  <input type="time" name="hora_entrada">\n</div>',
+        'graficos': '<!-- Chart.js v4 é auto-injetado pelo CoxaUI -->\n<div style="height:260px"><canvas id="grafico-visitantes"></canvas></div>\n\n<script>\ncoxaChart(\'grafico-visitantes\', {\n  type: \'line\',   /* line | bar | doughnut | pie | polarArea | radar | scatter | bubble */\n  data: {\n    labels: [\'Jan\', \'Fev\', \'Mar\', \'Abr\', \'Mai\', \'Jun\'],\n    datasets: [\n      { label: \'Visitantes\', data: [120, 190, 150, 220, 260, 240], fill: true, tension: .35 }\n    ]\n  },\n  options: { maintainAspectRatio: false }\n});\n<\/script>\n\n<!-- Datasets sem cor definida recebem a paleta da marca:\n     variações do verde primary, alternando tons escuros e claros.\n     Texto e grade seguem o tema claro/escuro automaticamente. -->',
+        'form-combo': '<div class="form-g">\n  <label>Departamento</label>\n  <div class="combo">\n    <input type="text" class="combo-input" name="departamento"\n      placeholder="Selecione ou digite..." autocomplete="off">\n    <i class="ti ti-chevron-down combo-arrow"></i>\n    <div class="combo-list">\n      <button type="button" class="combo-opt">Financeiro</button>\n      <button type="button" class="combo-opt">Recursos Humanos</button>\n      <button type="button" class="combo-opt">Tecnologia da Informação</button>\n      <div class="combo-empty">Nenhuma opção encontrada</div>\n    </div>\n  </div>\n</div>\n\n<!-- Valor diferente do rótulo? Adicione um hidden .combo-value\n     e data-value em cada opção: -->\n<!--\n<div class="combo">\n  <input type="text" class="combo-input" autocomplete="off">\n  <input type="hidden" class="combo-value" name="depto_id">\n  <i class="ti ti-chevron-down combo-arrow"></i>\n  <div class="combo-list">\n    <button type="button" class="combo-opt" data-value="12">Financeiro</button>\n  </div>\n</div>\n-->',
         'tabelas': '<div class="tbl-wrap">\n  <table>\n    <thead>\n      <tr>\n        <th><input type="checkbox"></th>\n        <th>Nome</th>\n        <th>Status</th>\n        <th>Ações</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td><input type="checkbox" class="sel-chk" data-reg="1" data-nome="João"></td>\n        <td>João da Silva</td>\n        <td><span class="badge-inside">Presente</span></td>\n        <td>\n          <div class="act-dd">\n            <button class="btn btn-sm btn-s act-dd-btn">\n              <i class="ti ti-dots-vertical"></i>\n            </button>\n            <div class="act-dd-menu">\n              <a href="#" class="act-dd-item"><i class="ti ti-eye"></i> Ver</a>\n              <button class="act-dd-item danger"><i class="ti ti-trash"></i> Excluir</button>\n            </div>\n          </div>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n<!-- JS -->\n<script>initTableSearch(\'input-id\', \'#minha-table tbody tr\');<\/script>',
         'cards-conteudo': '<div class="cards">\n  <div class="card-item">\n    <div class="ci-sec"><a href="#">Financeiro</a></div>\n    <h2><a href="#">Manual de Fluxo de Caixa</a></h2>\n    <p class="ci-sub">Descrição do documento...</p>\n    <div class="ci-meta">\n      <span><strong>Atualizado:</strong> 28 jun 2026</span>\n    </div>\n    <div class="tags">\n      <a href="#" class="tag">financeiro</a>\n    </div>\n  </div>\n</div>',
         'cards-sec': '<div class="sec-cards">\n  <a href="#" class="sec-card">\n    <div class="sc-name"><i class="ti ti-cash"></i> Financeiro</div>\n    <div class="sc-cnt">12 documentos</div>\n  </a>\n</div>',
@@ -2382,6 +2499,8 @@
         ['formularios', 3, 'form-localidade'],
         ['formularios', 4, 'form-upload'],
         ['formularios', 5, 'form-range'],
+        ['formularios', 6, 'form-horario'],
+        ['formularios', 7, 'form-combo'],
         ['tabelas', -1, 'tabelas'],
         ['cards', 0, 'cards-conteudo'],
         ['cards', 1, 'cards-sec'],
@@ -2403,6 +2522,7 @@
         ['tooltip', -1, 'tooltip'],
         ['avatar', -1, 'avatar'],
         ['stat-cards', -1, 'stat-cards'],
+        ['graficos', -1, 'graficos'],
         ['filter-pills', -1, 'filter-pills'],
         ['timeline', 0, 'timeline-hist'],
         ['timeline', 1, 'timeline-vertical'],
@@ -2478,6 +2598,107 @@
 
     /* Close modal on overlay click */
     initModalOverlayClose('demo-modal');
+
+    /* Demos de gráficos (Chart.js auto-injetado — coxaChart aguarda a carga) */
+    coxaChart('demo-chart-line', {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+        datasets: [
+          { label: 'Visitantes', data: [120, 190, 150, 220, 260, 240], fill: true, tension: .35 },
+          { label: 'Entregas', data: [80, 95, 110, 105, 140, 155], fill: true, tension: .35 }
+        ]
+      },
+      options: { maintainAspectRatio: false }
+    });
+    coxaChart('demo-chart-bar', {
+      type: 'bar',
+      data: {
+        labels: ['Sede', 'CT', 'Estádio'],
+        datasets: [
+          { label: 'Entradas', data: [340, 180, 520] },
+          { label: 'Saídas', data: [320, 170, 490] }
+        ]
+      },
+      options: { maintainAspectRatio: false }
+    });
+    coxaChart('demo-chart-doughnut', {
+      type: 'doughnut',
+      data: {
+        labels: ['Fornecedores', 'Terceirizados', 'Visitantes', 'Imprensa'],
+        datasets: [{ data: [35, 25, 30, 10] }]
+      },
+      options: { maintainAspectRatio: false }
+    });
+    coxaChart('demo-chart-hbar', {
+      type: 'bar',
+      data: {
+        labels: ['Manuais', 'Processos', 'Políticas', 'Treinamentos'],
+        datasets: [{ label: 'Documentos', data: [42, 28, 15, 9] }]
+      },
+      options: { indexAxis: 'y', maintainAspectRatio: false }
+    });
+    coxaChart('demo-chart-pie', {
+      type: 'pie',
+      data: {
+        labels: ['Sede', 'CT', 'Estádio', 'Loja'],
+        datasets: [{ data: [40, 20, 30, 10] }]
+      },
+      options: { maintainAspectRatio: false }
+    });
+    coxaChart('demo-chart-polar', {
+      type: 'polarArea',
+      data: {
+        labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'],
+        datasets: [{ data: [90, 120, 100, 140, 80] }]
+      },
+      options: { maintainAspectRatio: false }
+    });
+    coxaChart('demo-chart-radar', {
+      type: 'radar',
+      data: {
+        labels: ['Documentação', 'Processos', 'Segurança', 'Atendimento', 'Agilidade'],
+        datasets: [
+          { label: 'Sede', data: [8, 7, 9, 6, 7] },
+          { label: 'CT', data: [6, 8, 7, 9, 8] }
+        ]
+      },
+      options: { maintainAspectRatio: false }
+    });
+    coxaChart('demo-chart-scatter', {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Visitas (hora × duração em min)',
+          data: [
+            { x: 8, y: 35 }, { x: 9, y: 50 }, { x: 10, y: 22 }, { x: 11, y: 70 },
+            { x: 13, y: 45 }, { x: 14, y: 30 }, { x: 15, y: 60 }, { x: 16, y: 25 }, { x: 17, y: 40 }
+          ]
+        }]
+      },
+      options: { maintainAspectRatio: false }
+    });
+    coxaChart('demo-chart-bubble', {
+      type: 'bubble',
+      data: {
+        datasets: [
+          { label: 'Sede', data: [{ x: 10, y: 30, r: 12 }, { x: 14, y: 50, r: 8 }, { x: 16, y: 20, r: 15 }] },
+          { label: 'CT', data: [{ x: 9, y: 45, r: 10 }, { x: 12, y: 25, r: 14 }, { x: 15, y: 60, r: 7 }] }
+        ]
+      },
+      options: { maintainAspectRatio: false }
+    });
+    coxaChart('demo-chart-misto', {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+        datasets: [
+          { label: 'Chamados', data: [65, 59, 80, 81, 56, 72] },
+          { type: 'line', label: 'Resolvidos', data: [55, 55, 70, 78, 50, 68], tension: .35 }
+        ]
+      },
+      options: { maintainAspectRatio: false }
+    });
   </script>
 </body>
 
